@@ -1,0 +1,527 @@
+fileFormatVersion: 2
+guid: 3afc83799a6c6d54380587d3fe97ec88
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 203a1e02b7d5d844986423d10b134c67
+      internalID: -1058370268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_1"
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71174d0ffac04d1448adbe48dcbf03f2
+      internalID: -342985923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_2"
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cb219da739908c4ca28cc560a99e0dc
+      internalID: -853417270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_3"
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f325b47304e296644b668305c4c8f76b
+      internalID: -30818101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_4"
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70f99b68e5f72ee4cb5f6cc17f803e0f
+      internalID: -526145106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_5"
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 48
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68998769a42a1c54caa868f3fa52c774
+      internalID: 373981335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_6"
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d2ba3a8a98e0ad4fad6c2d3bcd03f50
+      internalID: 1601087919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_7"
+      rect:
+        serializedVersion: 2
+        x: 2072
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b94c9f09f43df41a8ab38a604fec20
+      internalID: -689843336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_8"
+      rect:
+        serializedVersion: 2
+        x: 2368
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ec43034a56a9e4189881aaf877efe7
+      internalID: 1963944161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_9"
+      rect:
+        serializedVersion: 2
+        x: 2664
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36fe9a76e85b3cd4caa73b415273c192
+      internalID: 902632736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_10"
+      rect:
+        serializedVersion: 2
+        x: 2960
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2da1562b5ad1aee478dfc9d2b230fd03
+      internalID: -409222945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_11"
+      rect:
+        serializedVersion: 2
+        x: 3256
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c33a8815deba14d4899ffa83b0c1ae18
+      internalID: -1833205894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_12"
+      rect:
+        serializedVersion: 2
+        x: 3552
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea1615b0fc8f3f24f93df702c09efab9
+      internalID: -95229026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_13"
+      rect:
+        serializedVersion: 2
+        x: 3848
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665e7194cd60e404aa38f401bb9353e4
+      internalID: -167045157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_14"
+      rect:
+        serializedVersion: 2
+        x: 4144
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c45614ac07b53548b6ea877e46d708b
+      internalID: -436628973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_15"
+      rect:
+        serializedVersion: 2
+        x: 4440
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4932e9a5fbdd4b4c9aee100b721e3a8
+      internalID: -972887666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_16"
+      rect:
+        serializedVersion: 2
+        x: 4736
+        y: 47
+        width: 296
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de73bdafc1ca0741863b9f0bc4d84da
+      internalID: -1803886751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_0": -1058370268
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_1": -342985923
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_10": -409222945
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_11": -1833205894
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_12": -95229026
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_13": -167045157
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_14": -436628973
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_15": -972887666
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_16": -1803886751
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_2": -853417270
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_3": -30818101
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_4": -526145106
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_5": 373981335
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_6": 1601087919
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_7": -689843336
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_8": 1963944161
+      "\xE9quehojevaiterfestinhaaquidentrodomeubarraco_9": 902632736
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
