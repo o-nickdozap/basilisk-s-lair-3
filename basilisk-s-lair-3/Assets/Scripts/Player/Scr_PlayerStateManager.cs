@@ -20,7 +20,10 @@ public class Scr_PlayerStateManager : MonoBehaviour
     #region Move
 
         public float move;
+        private float moveY;
         public float speed = 1.5f;
+
+        private bool IsOnSlope;
 
     #endregion
 
@@ -86,6 +89,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         public bool IsOnWall;
         public float wallGravity;
+        private float wallGravityMultiplier;
         public Vector2 wallCheckDistance;
         public Transform wallCheckPos;
         public bool resetYVelocityTrigger;
@@ -100,14 +104,13 @@ public class Scr_PlayerStateManager : MonoBehaviour
         currentState = IdleState;
 
         attackArea = idleAttackArea;
+        wallGravityMultiplier = wallGravity;
 
         currentState.EnterState(this);
     }
 
     void Update()
     {
-        move = Input.GetAxis("Horizontal");
-
         currentState.UpdateState(this);
 
         if (!IsOnWall) { PlayerDirection(); }
@@ -119,6 +122,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
         Dash();
         WallSlide();
         WallJump();
+        Slope();
     }
 
     void PlayerDirection()
@@ -130,6 +134,9 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Move()
     {
+        move = Input.GetAxis("Horizontal");
+        moveY = Input.GetAxis("Vertical");
+
         rig.velocity = new Vector2(move * speed, rig.velocity.y);
     }
 
@@ -140,7 +147,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         if (rig.velocity.y <= 0 && !IsOnWall) {
             if (!IsOnFloor) { Physics2D.gravity = new Vector2(0, fallGravity); }
-            else { jumpCounter = jumpCounterMax; resetYVelocityTrigger = true; }
+            else { jumpCounter = jumpCounterMax; }
         } else { Physics2D.gravity = new Vector2(0, gravity); }
 
 
@@ -167,6 +174,15 @@ public class Scr_PlayerStateManager : MonoBehaviour
             }
         }
         if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump")) { jumpTimecounter = 0; }
+    }
+
+    void Slope()
+    {
+        Collider2D[] hitfloor = Physics2D.OverlapBoxAll(footPos.position, footArea , 0, floorLayer);
+        foreach (Collider2D col in hitfloor) {
+            if (col.CompareTag("Slope")) { IsOnSlope = true; }
+            else { IsOnSlope = false; }
+        }
     }
 
     void Attack()
@@ -202,11 +218,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPos.position, attackArea, 0, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-
             if (enemy.CompareTag("Molho")) { enemy.GetComponent<Scr_MolhoStateManager>().Damage(swordDamage); }
-
             isDamaging = false;
-
         }
 
     }
@@ -255,20 +268,13 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         IsOnWall = Physics2D.OverlapBox(wallCheckPos.position, wallCheckDistance, 0, floorLayer)
         && !IsOnFloor && rig.velocity.y <= 0;
-        
+
+        if (moveY < 0) { wallGravity = wallGravityMultiplier * ((-moveY * 4) + 1); }
+        else { wallGravity = wallGravityMultiplier; }
+
         if (IsOnWall) {
-
-            /*switch (playerDirection) {
-                case 1:
-                    wallDirection = false;
-                    break;
-                case -1:
-                    wallDirection = true;
-                    break;
-            }*/
-
+            rig.velocity = new Vector2(rig.velocity.x, 0);
             Physics2D.gravity = new Vector2(0, wallGravity);
-            if (resetYVelocityTrigger) { rig.velocity = new Vector2(rig.velocity.x, 0); resetYVelocityTrigger = false; }
             spr.flipX = true;
         } else { spr.flipX = false; }
     }
@@ -278,6 +284,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
         if (IsOnWall) {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
                 jumpCounter = jumpCounterMax;
+                dashCounter = 1;
                 rig.AddForce(new Vector2(-playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
             }
         }
