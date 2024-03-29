@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Scr_PlayerStateManager : MonoBehaviour
@@ -23,7 +24,9 @@ public class Scr_PlayerStateManager : MonoBehaviour
         private float moveY;
         public float speed = 1.5f;
 
-        private bool IsOnSlope;
+        public bool IsOnSlope;
+        private RaycastHit2D slopeHit;
+        [SerializeField] Vector2 slopeArea;
 
     #endregion
 
@@ -43,6 +46,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
         public float fallGravity;
         public int jumpCounter;
         public int jumpCounterMax;
+        private bool isJumping;
 
     #endregion
 
@@ -123,6 +127,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
         WallSlide();
         WallJump();
         Slope();
+
+        Debug.Log(slopeHit.distance);
     }
 
     void PlayerDirection()
@@ -147,7 +153,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         if (rig.velocity.y <= 0 && !IsOnWall) {
             if (!IsOnFloor) { Physics2D.gravity = new Vector2(0, fallGravity); }
-            else { jumpCounter = jumpCounterMax; }
+            else { jumpCounter = jumpCounterMax; isJumping = false; }
         } else { Physics2D.gravity = new Vector2(0, gravity); }
 
 
@@ -155,6 +161,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
             if (IsOnFloor) {
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
                 jumpTimecounter = jumpTime;
+                isJumping = true;
             }
         }
 
@@ -163,26 +170,36 @@ public class Scr_PlayerStateManager : MonoBehaviour
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
                 jumpTimecounter = jumpTime;
                 jumpCounter -= 1;
+                isJumping = true;
             }
-
         }
 
         if (Input.GetKey(KeyCode.Z) || Input.GetButton("Jump")) {
             if (jumpTimecounter > 0) {
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
                 jumpTimecounter -= Time.deltaTime;
+                isJumping = true;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump")) { jumpTimecounter = 0; }
+        if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump")) { jumpTimecounter = 0; isJumping = false; }
     }
 
     void Slope()
     {
-        Collider2D[] hitfloor = Physics2D.OverlapBoxAll(footPos.position, footArea , 0, floorLayer);
+        slopeHit = Physics2D.Raycast(transform.position, -Vector2.up, 100f, floorLayer);
+
+        Collider2D[] hitfloor = Physics2D.OverlapBoxAll(footPos.position, slopeArea, 0);
         foreach (Collider2D col in hitfloor) {
             if (col.CompareTag("Slope")) { IsOnSlope = true; }
             else { IsOnSlope = false; }
         }
+
+        if (IsOnSlope && !isJumping) {
+            if (rig.velocity.y <= 0) { transform.position = new Vector2(transform.position.x, slopeHit.point.y + slopeHit.distance); }
+            else { rig.velocity = new Vector2(rig.velocity.x, 0); }
+
+            rig.gravityScale = 0;
+        } if (!IsOnSlope) { rig.gravityScale = 1; }
     }
 
     void Attack()
@@ -302,12 +319,14 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         Gizmos.DrawWireCube(footPos.position, footArea);
 
-        Gizmos.color = Color.red;
-
         Gizmos.DrawWireCube(attackPos.position, attackArea);
 
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckDistance);
+
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawWireCube(footPos.position, slopeArea);
     }
 }

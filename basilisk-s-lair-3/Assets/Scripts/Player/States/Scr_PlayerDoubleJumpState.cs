@@ -15,6 +15,7 @@ public class Scr_PlayerDoubleJumpState : Scr_PlayerBaseState
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxis("Dash") > 0 && !player.isDashing) { player.SwitchState(player.DashState); }
 
         if (player.IsOnWall && !player.IsOnFloor && player.rig.velocity.y < 0) { player.SwitchState(player.WallSlideState); }
+        if (player.IsOnSlope && player.rig.velocity.y <= 0) { player.SwitchState(player.IdleState); }
     }
 
     public override void OnCollisionEnter(Scr_PlayerStateManager player)
