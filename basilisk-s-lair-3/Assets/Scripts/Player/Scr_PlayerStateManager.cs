@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scr_PlayerStateManager : MonoBehaviour
 {
@@ -18,35 +18,37 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public Rigidbody2D rig;
     public SpriteRenderer spr;
 
+    public Vector2 teste;
+
     #region Move
 
-        public float move;
-        private float moveY;
-        public float speed = 1.5f;
+    public float move;
+    private float moveY;
+    public float speed = 1.5f;
 
-        public bool IsOnSlope;
-        private RaycastHit2D slopeHit;
-        [SerializeField] Vector2 slopeArea;
+    public bool IsOnSlope;
+    private RaycastHit2D slopeHit;
+    [SerializeField] Vector2 slopeArea;
 
     #endregion
 
     #region Jump
 
-        public bool IsOnFloor;
+    public bool IsOnFloor;
 
-        public Transform footPos;
-        public Vector2 footArea;
-        public LayerMask floorLayer;
+    public Transform footPos;
+    public Vector2 footArea;
+    public LayerMask floorLayer;
 
-        public float jumpForce;
-        public float jumpTime;
-        public float jumpTimecounter;
+    public float jumpForce;
+    public float jumpTime;
+    public float jumpTimecounter;
 
-        public float gravity;
-        public float fallGravity;
-        public int jumpCounter;
-        public int jumpCounterMax;
-        private bool isJumping;
+    public float gravity;
+    public float fallGravity;
+    public int jumpCounter;
+    public int jumpCounterMax;
+    private bool isJumping;
 
     #endregion
 
@@ -64,9 +66,9 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     public float swordDamage = 1;
 
-    bool isDamaging=false;
+    bool isDamaging = false;
 
-    bool isAttacking=false;
+    bool isAttacking = false;
 
     public Transform attackPos;
     public Vector2 attackArea;
@@ -78,28 +80,54 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     #region Dash
 
-        public float dashForce;
-        public float dashTime;
-        public float dashTimeCounter;
+    public float dashForce;
+    public float dashTime;
+    public float dashTimeCounter;
 
-        public float dashCounter=1;
+    public float dashCounter = 1;
 
-        public bool isDashing;
-        public bool _canDash;
+    public bool isDashing;
+    public bool _canDash;
 
     #endregion
 
     #region WallJump
 
-        public bool IsOnWall;
-        public float wallGravity;
-        private float wallGravityMultiplier;
-        public Vector2 wallCheckDistance;
-        public Transform wallCheckPos;
-        public bool resetYVelocityTrigger;
-        public float walljumpForceX;
-        public float walljumpForceY;
-        public bool wallDirection;
+    public bool IsOnWall;
+    public float wallGravity;
+    private float wallGravityMultiplier;
+    public Vector2 wallCheckDistance;
+    public Transform wallCheckPos;
+    public bool resetYVelocityTrigger;
+    public float walljumpForceX;
+    public float walljumpForceY;
+    public bool wallDirection;
+
+    #endregion
+
+    #region Life
+
+    [SerializeField] int _playerMaxLife;
+    [SerializeField] int _playerLife;
+
+    [SerializeField] Vector2 _playerHitBox;
+    [SerializeField] LayerMask _enemyLayer;
+    [SerializeField] Transform _hitBoxPivot;
+
+    private Collider2D[] _wasHit;
+    private bool _canBeDamage = true;
+
+    [SerializeField] float _knobackTime;
+    private float _knockbackTimeCounter;
+    private bool _knockbackTrigger;
+    public bool _knockbackStun;
+    private Collider2D _enemyHit;
+
+    [SerializeField] float _knockbackForceX;
+    [SerializeField] float _knockbackForceY;
+
+    [SerializeField] RectTransform _hpTransform;
+    [SerializeField] Transform _hpMinTransform;
 
     #endregion
 
@@ -117,18 +145,33 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         currentState.UpdateState(this);
 
+        IsOnFloor = Physics2D.OverlapBox(footPos.position, footArea, 0, floorLayer);
+
+        IsOnWall = Physics2D.OverlapBox(wallCheckPos.position, wallCheckDistance, 0, floorLayer)
+        && !IsOnFloor && rig.velocity.y <= 0;
+
         if (!IsOnWall) { PlayerDirection(); }
-        Attack();
-        Move();
 
-        if (!IsOnWall) { Jump(); }
+        if (_knockbackTrigger) { Knockback(); }
 
-        Dash();
-        WallSlide();
-        WallJump();
+        if (!_knockbackStun) {
+            Dash();
+            WallSlide();
+            WallJump();
+            Move();
+            Attack();
+
+            if (!IsOnWall) { Jump(); }
+        } 
+        else if (IsOnFloor) {
+            _knockbackStun = false;
+        }
+
         Slope();
+        TDamage();
+        Life();
 
-        Debug.Log(slopeHit.distance);
+        Debug.Log(Physics2D.gravity);
     }
 
     void PlayerDirection()
@@ -140,17 +183,14 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Move()
     {
-        move = Input.GetAxis("Horizontal");
-        moveY = Input.GetAxis("Vertical");
+        move = Input.GetAxisRaw("Horizontal");
+        moveY = Input.GetAxisRaw("Vertical");
 
         rig.velocity = new Vector2(move * speed, rig.velocity.y);
     }
 
     void Jump()
     {
-
-        IsOnFloor = Physics2D.OverlapBox(footPos.position, footArea, 0, floorLayer);
-
         if (rig.velocity.y <= 0 && !IsOnWall) {
             if (!IsOnFloor) { Physics2D.gravity = new Vector2(0, fallGravity); }
             else { jumpCounter = jumpCounterMax; isJumping = false; }
@@ -158,9 +198,10 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
-            if (IsOnFloor) {
+            if (IsOnFloor && jumpCounter > 0) {
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
                 jumpTimecounter = jumpTime;
+                jumpCounter -= 1;
                 isJumping = true;
             }
         }
@@ -211,43 +252,69 @@ public class Scr_PlayerStateManager : MonoBehaviour
                 isAttacking = true;
                 attackDirection = playerDirection;
 
-                if (move == 0) { attackArea = idleAttackArea; }
+                if (rig.velocity == Vector2.zero) { attackArea = idleAttackArea; }
 
                 else { attackArea = walkAttackArea; }
 
                 isDamaging = true;
-
             }
         }
 
         if (isDamaging)
         {
-            if (move != 0) { Invoke(nameof(AttackDamage), 0.2f); isDamaging = false; }
-            else { AttackDamage(); isDamaging = false; }
+            AttackDamage();
         }
-
-        //if (attackDirection != playerDirection) { AttackEnd(); }
     }
 
     void AttackDamage()
     {
-
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPos.position, attackArea, 0, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.CompareTag("Molho")) { enemy.GetComponent<Scr_MolhoStateManager>().Damage(swordDamage); }
             isDamaging = false;
         }
+    }
 
+    void TDamage()
+    {
+        _wasHit = Physics2D.OverlapBoxAll(_hitBoxPivot.position, _playerHitBox, 0, _enemyLayer);
+
+        foreach (Collider2D hit in _wasHit) {
+            if (hit.CompareTag("Molho") && _canBeDamage) {
+                _playerLife--;
+
+                _enemyHit = hit;
+                _knockbackTrigger = true;
+                _canBeDamage = false;
+                _knockbackTimeCounter = _knobackTime;
+
+                Knockback();
+                hit.gameObject.GetComponent<Scr_MolhoStateManager>().KnockBack();
+
+                rig.velocity = new Vector2(0, 0);
+            }
+        }
+    }
+
+    void Knockback()
+    {
+        float molhoPos = gameObject.transform.position.x - _enemyHit.transform.position.x;
+
+        if (_knockbackTimeCounter > 0)
+        {
+            _knockbackTimeCounter -= Time.deltaTime;
+            _knockbackStun = true;
+
+            rig.velocity = new Vector2(Mathf.Sign(molhoPos) * _knockbackForceX, _knockbackForceY);
+        } else { _knockbackTrigger = false; _canBeDamage = true; }
     }
 
     void AttackEnd()
     {
-
         isAttacking = false;
         isDamaging = false;
         attackEnd = true;
-
     }
 
     void Dash()
@@ -258,12 +325,11 @@ public class Scr_PlayerStateManager : MonoBehaviour
         {
             if (dashCounter > 0)
             {
-                isAttacking = false;
                 dashTimeCounter = dashTime;
+                isAttacking = false;
                 isDashing = true;
                 dashCounter--;
             }
-
         }
 
         if (dashTimeCounter <= 0 && Input.GetAxis("Dash") == 0)
@@ -272,26 +338,24 @@ public class Scr_PlayerStateManager : MonoBehaviour
             isDashing = false;
         }
 
-        dashTimeCounter -= Time.deltaTime;
-
         if (dashTimeCounter > 0)
         {
             rig.AddForce(new Vector2(((dashForce * 10000) * playerDirection) * Time.deltaTime, 0), ForceMode2D.Force);
             rig.velocity = new Vector2(rig.velocity.x, 0);
+            dashTimeCounter -= Time.deltaTime;
         }
     }
     
     void WallSlide()
     {
-        IsOnWall = Physics2D.OverlapBox(wallCheckPos.position, wallCheckDistance, 0, floorLayer)
-        && !IsOnFloor && rig.velocity.y <= 0;
-
-        if (moveY < 0) { wallGravity = wallGravityMultiplier * ((-moveY * 4) + 1); }
+        if (moveY < 0) { wallGravity = wallGravityMultiplier * (-moveY * 4 + 1); }
         else { wallGravity = wallGravityMultiplier; }
 
         if (IsOnWall) {
-            rig.velocity = new Vector2(rig.velocity.x, 0);
+            rig.velocity = new Vector2(0, 0);
             Physics2D.gravity = new Vector2(0, wallGravity);
+            jumpCounter = jumpCounterMax;
+            dashCounter = 1;
             spr.flipX = true;
         } else { spr.flipX = false; }
     }
@@ -300,11 +364,18 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         if (IsOnWall) {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
-                jumpCounter = jumpCounterMax;
-                dashCounter = 1;
                 rig.AddForce(new Vector2(-playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
             }
         }
+    }
+
+    void Life()
+    {
+        _hpTransform.pivot = new Vector2(0 , 0.5f);
+        _hpTransform.position = _hpMinTransform.position;
+        _hpTransform.sizeDelta = new Vector2(-1913 + (371 * _playerLife/_playerMaxLife), _hpTransform.sizeDelta.y);
+
+        if (_playerLife <= 0) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
     }
 
     public void SwitchState(Scr_PlayerBaseState state)
@@ -315,9 +386,13 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.white;
 
         Gizmos.DrawWireCube(footPos.position, footArea);
+
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(_hitBoxPivot.position, _playerHitBox);
 
         Gizmos.DrawWireCube(attackPos.position, attackArea);
 

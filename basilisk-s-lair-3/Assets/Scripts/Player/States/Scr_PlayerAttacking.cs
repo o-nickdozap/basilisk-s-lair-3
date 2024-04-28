@@ -4,7 +4,7 @@ public class Scr_PlayerAttacking : Scr_PlayerBaseState
 {
     public override void EnterState(Scr_PlayerStateManager player)
     {
-        if (player.move != 0) { player.anim.Play("Anim_player_walk_attack"); }
+        if (player.rig.velocity != Vector2.zero) { player.anim.Play("Anim_player_walk_attack"); }
         else { player.anim.Play("Anim_player_idle_attack"); }
     }
 

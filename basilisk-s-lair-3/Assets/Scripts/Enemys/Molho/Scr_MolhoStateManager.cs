@@ -18,7 +18,7 @@ public class Scr_MolhoStateManager : MonoBehaviour
     public Vector2 playerPos;
 
     public float molhoLife;
-    public float knockTime;
+    [SerializeField] float _knockForceX, _knockForceY;
 
     public bool isChasing;
 
@@ -45,14 +45,13 @@ public class Scr_MolhoStateManager : MonoBehaviour
     public void Damage(float Damage)
     {
         molhoLife -= Damage;
-        knockTime = 0.03f;
         KnockBack();
     }
 
     public void KnockBack()
     {
-        Physics2D.gravity = new Vector2(0, 0);
-        rig.AddForce(playerPos * 256, ForceMode2D.Force);
+        rig.velocity = new Vector2(0, 0);
+        rig.AddForce(new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, playerPos.y * _knockForceY) , ForceMode2D.Impulse);
     }
 
     void Die()

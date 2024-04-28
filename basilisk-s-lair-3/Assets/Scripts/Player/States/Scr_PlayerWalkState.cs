@@ -12,9 +12,9 @@ public class Scr_PlayerWalkState : Scr_PlayerBaseState
 
         if (player.rig.velocity.y < 0 && !player.IsOnFloor) { player.SwitchState(player.FallState); }
 
-        if (Input.GetKey(KeyCode.X) || Input.GetButtonDown("Attack")) { player.SwitchState(player.AttackingState); }
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack")) { player.SwitchState(player.AttackingState); }
 
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetAxis("Dash") > 0 && !player.isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
+        if (Input.GetKey(KeyCode.C) || Input.GetAxis("Dash") > 0 && !player.isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
     }
 
     public override void OnCollisionEnter(Scr_PlayerStateManager player){
