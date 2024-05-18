@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class Scr_PlayerStateManager : MonoBehaviour
 {
-    Scr_PlayerBaseState currentState;
+    private Scr_PlayerBaseState currentState;
+    public PlayerData _playerData;
 
     public Scr_PlayerIdleState IdleState = new Scr_PlayerIdleState();
     public Scr_PlayerWalkState WalkState = new Scr_PlayerWalkState();
@@ -17,8 +19,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public Animator anim;
     public Rigidbody2D rig;
     public SpriteRenderer spr;
-
-    public Vector2 teste;
 
     #region Move
 
@@ -145,6 +145,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         currentState.UpdateState(this);
 
+        _playerData.gameTime += Time.deltaTime;
+
         IsOnFloor = Physics2D.OverlapBox(footPos.position, footArea, 0, floorLayer);
 
         IsOnWall = Physics2D.OverlapBox(wallCheckPos.position, wallCheckDistance, 0, floorLayer)
@@ -171,7 +173,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
         TDamage();
         Life();
 
-        Debug.Log(Physics2D.gravity);
+        //Debug.Log(Physics2D.gravity);
     }
 
     void PlayerDirection()
@@ -210,7 +212,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
             if (!IsOnFloor && jumpCounter > 0) {
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
                 jumpTimecounter = jumpTime;
-                jumpCounter -= 1;
+                jumpCounter -= 2;
                 isJumping = true;
             }
         }

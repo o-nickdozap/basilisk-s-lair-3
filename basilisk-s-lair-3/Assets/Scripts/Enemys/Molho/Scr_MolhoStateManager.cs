@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Scr_MolhoStateManager : MonoBehaviour
 {
-    Scr_MolhoBaseState currentState;
+    private Scr_MolhoBaseState currentState;
 
     public Scr_MolhoIdleState IdleState = new Scr_MolhoIdleState();
     public Scr_MolhoChaseState ChaseState = new Scr_MolhoChaseState();
@@ -50,8 +50,7 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
     public void KnockBack()
     {
-        rig.velocity = new Vector2(0, 0);
-        rig.AddForce(new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, playerPos.y * _knockForceY) , ForceMode2D.Impulse);
+        rig.velocity = new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, Mathf.Sign(playerPos.y) * _knockForceY);
     }
 
     void Die()

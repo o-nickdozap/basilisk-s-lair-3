@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/basilisk-s-lair-2-0.unity
     guid: 407b9cb97e32cb84a8f95c2c9c226889
+  - enabled: 1
+    path: Assets/Scenes/teste.unity
+    guid: a3a1f6b9cdd46454d8bd9ec5e470a024
   m_configObjects: {}
