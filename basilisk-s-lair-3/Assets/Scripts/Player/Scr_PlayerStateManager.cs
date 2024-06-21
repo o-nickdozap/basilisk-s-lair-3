@@ -16,6 +16,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public Scr_PlayerDashState DashState = new Scr_PlayerDashState();
     public Scr_PlayerWallSlideState WallSlideState = new Scr_PlayerWallSlideState();
 
+    public Vector2 _startScenePosition;
+
     public Animator anim;
     public Rigidbody2D rig;
     public SpriteRenderer spr;
@@ -133,6 +135,9 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this);
+        SceneManager.sceneLoaded += OnSceneLoad;
+
         currentState = IdleState;
 
         attackArea = idleAttackArea;
@@ -384,6 +389,10 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+    }
+
+    public void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode){
+        this.transform.position = _startScenePosition;
     }
 
     void OnDrawGizmos()
