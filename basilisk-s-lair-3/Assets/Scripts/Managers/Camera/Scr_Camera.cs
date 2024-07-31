@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Scr_Camera : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Scr_Camera : MonoBehaviour
     void Start()
     {
         playerObject = GameObject.Find("Player");
+        transform.position = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y, transform.position.z);
     }
 
     void FixedUpdate()

@@ -7,6 +7,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
     private Scr_PlayerBaseState currentState;
     public PlayerData _playerData;
 
+    public static Scr_PlayerStateManager _instance;
+
     public Scr_PlayerIdleState IdleState = new Scr_PlayerIdleState();
     public Scr_PlayerWalkState WalkState = new Scr_PlayerWalkState();
     public Scr_PlayerJumpState JumpState = new Scr_PlayerJumpState();
@@ -133,9 +135,20 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     #endregion
 
-    void Start()
+    void Awake()
     {
         DontDestroyOnLoad(this);
+
+        if (_instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+
+        _instance = this;
+    }
+
+    void Start()
+    {
         SceneManager.sceneLoaded += OnSceneLoad;
 
         currentState = IdleState;
@@ -177,8 +190,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
         Slope();
         TDamage();
         Life();
-
-        //Debug.Log(Physics2D.gravity);
     }
 
     void PlayerDirection()
