@@ -80,6 +80,26 @@ public class Scr_MolhoStateManager : MonoBehaviour
         state.EnterState(this);
     }
 
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player")) {
+            Scr_PlayerStateManager _player = col.gameObject.GetComponent<Scr_PlayerStateManager>();
+
+            KnockBack();
+
+            _player._playerLife--;
+            _player._enemyHit = GetComponent<Collider2D>();
+
+            _player._knockbackTrigger = true;
+            _player._canBeDamage = false;
+
+            _player._knockbackTimeCounter = _player._knobackTime;
+            _player.Knockback();
+
+            _player.rig.velocity = new Vector2(0, 0);
+        }
+    }
+
     void OnDrawGizmos()
     {
 

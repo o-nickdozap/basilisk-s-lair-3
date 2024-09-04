@@ -14,7 +14,7 @@ public class Scr_PlayerIdleState : Scr_PlayerBaseState
             if (player.jumpCounter > 0) { player.SwitchState(player.JumpState); }
         }
 
-        if (player.rig.velocity.y < 0 && !player.IsOnFloor) { player.SwitchState(player.FallState); }
+        if (player.rig.velocity.y < 0 && !player.IsOnFloor()) { player.SwitchState(player.FallState); }
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack")) { player.SwitchState(player.AttackingState); }
 

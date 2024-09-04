@@ -7,6 +7,7 @@ TagManager:
   - Molho
   - Slope
   - Exit
+  - Guarda
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
+  - Post Processing
   - 
   - 
   - 
@@ -41,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: G-2
+    uniqueID: 950408821
+    locked: 0
+  - name: G-1
+    uniqueID: 3876169927
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: G0
+    uniqueID: 964313405
     locked: 0

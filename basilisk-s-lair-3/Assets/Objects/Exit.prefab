@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _starScenePosition: {x: 0, y: 0}
+  _targetRoomName: 

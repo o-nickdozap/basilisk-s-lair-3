@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class Scr_PlayerStateManager : MonoBehaviour
@@ -30,15 +29,11 @@ public class Scr_PlayerStateManager : MonoBehaviour
     private float moveY;
     public float speed = 1.5f;
 
-    public bool IsOnSlope;
-    private RaycastHit2D slopeHit;
-    [SerializeField] Vector2 slopeArea;
-
     #endregion
 
     #region Jump
 
-    public bool IsOnFloor;
+    //public bool IsOnFloor;
 
     public Transform footPos;
     public Vector2 footArea;
@@ -52,7 +47,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public float fallGravity;
     public int jumpCounter;
     public int jumpCounterMax;
-    private bool isJumping;
 
     #endregion
 
@@ -97,7 +91,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     #region WallJump
 
-    public bool IsOnWall;
     public float wallGravity;
     private float wallGravityMultiplier;
     public Vector2 wallCheckDistance;
@@ -112,20 +105,21 @@ public class Scr_PlayerStateManager : MonoBehaviour
     #region Life
 
     [SerializeField] int _playerMaxLife;
-    [SerializeField] int _playerLife;
+    [SerializeField] public int _playerLife;
+    public GameObject _hud;
 
     [SerializeField] Vector2 _playerHitBox;
     [SerializeField] LayerMask _enemyLayer;
     [SerializeField] Transform _hitBoxPivot;
 
     private Collider2D[] _wasHit;
-    private bool _canBeDamage = true;
+    public bool _canBeDamage = true;
 
-    [SerializeField] float _knobackTime;
-    private float _knockbackTimeCounter;
-    private bool _knockbackTrigger;
+    [SerializeField] public float _knobackTime;
+    public float _knockbackTimeCounter;
+    public bool _knockbackTrigger;
     public bool _knockbackStun;
-    private Collider2D _enemyHit;
+    public Collider2D _enemyHit;
 
     [SerializeField] float _knockbackForceX;
     [SerializeField] float _knockbackForceY;
@@ -137,14 +131,13 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
-
         if (_instance != null)
         {
             Destroy(this.gameObject);
+        } else {
+            _instance = this;
+            DontDestroyOnLoad(this);
         }
-
-        _instance = this;
     }
 
     void Start()
@@ -165,36 +158,31 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         _playerData.gameTime += Time.deltaTime;
 
-        IsOnFloor = Physics2D.OverlapBox(footPos.position, footArea, 0, floorLayer);
-
-        IsOnWall = Physics2D.OverlapBox(wallCheckPos.position, wallCheckDistance, 0, floorLayer)
-        && !IsOnFloor && rig.velocity.y <= 0;
-
-        if (!IsOnWall) { PlayerDirection(); }
+        if (!IsOnWall()) { PlayerDirection(); }
 
         if (_knockbackTrigger) { Knockback(); }
 
-        if (!_knockbackStun) {
+        if (!_knockbackStun)
+        {
             Dash();
             WallSlide();
             WallJump();
             Move();
             Attack();
 
-            if (!IsOnWall) { Jump(); }
-        } 
-        else if (IsOnFloor) {
+            if (!IsOnWall()) { Jump(); }
+        }
+
+        else if (IsOnFloor()) {
             _knockbackStun = false;
         }
 
-        Slope();
-        TDamage();
         Life();
     }
 
     void PlayerDirection()
     {
-        if (move != 0) { playerDirection = (int)Mathf.Sign(move); }
+        playerDirection = (move != 0) ? (int)Mathf.Sign(move) : playerDirection;
 
         gameObject.transform.localScale = new Vector3(playerDirection, 1, 1);
     }
@@ -209,56 +197,54 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Jump()
     {
-        if (rig.velocity.y <= 0 && !IsOnWall) {
-            if (!IsOnFloor) { Physics2D.gravity = new Vector2(0, fallGravity); }
-            else { jumpCounter = jumpCounterMax; isJumping = false; }
-        } else { Physics2D.gravity = new Vector2(0, gravity); }
+        if (rig.velocity.y <= 0 && !IsOnWall())
+        {
+            if (!IsOnFloor())
+            {
+                Physics2D.gravity = new Vector2(0, fallGravity);
+            }
+            else {
+                jumpCounter = jumpCounterMax;
+            }
+        }
+        else
+        {
+            Physics2D.gravity = new Vector2(0, gravity);
+        }
 
 
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
-            if (IsOnFloor && jumpCounter > 0) {
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
+        {
+            if (IsOnFloor() && jumpCounter > 0)
+            {
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+
                 jumpTimecounter = jumpTime;
                 jumpCounter -= 1;
-                isJumping = true;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
-            if (!IsOnFloor && jumpCounter > 0) {
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
+        {
+            if (!IsOnFloor() && jumpCounter > 0)
+            {
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+
                 jumpTimecounter = jumpTime;
                 jumpCounter -= 2;
-                isJumping = true;
             }
         }
 
-        if (Input.GetKey(KeyCode.Z) || Input.GetButton("Jump")) {
-            if (jumpTimecounter > 0) {
+        if (Input.GetKey(KeyCode.Z) || Input.GetButton("Jump"))
+        {
+            if (jumpTimecounter > 0)
+            {
                 rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+
                 jumpTimecounter -= Time.deltaTime;
-                isJumping = true;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump")) { jumpTimecounter = 0; isJumping = false; }
-    }
-
-    void Slope()
-    {
-        slopeHit = Physics2D.Raycast(transform.position, -Vector2.up, 100f, floorLayer);
-
-        Collider2D[] hitfloor = Physics2D.OverlapBoxAll(footPos.position, slopeArea, 0);
-        foreach (Collider2D col in hitfloor) {
-            if (col.CompareTag("Slope")) { IsOnSlope = true; }
-            else { IsOnSlope = false; }
-        }
-
-        if (IsOnSlope && !isJumping) {
-            if (rig.velocity.y <= 0) { transform.position = new Vector2(transform.position.x, slopeHit.point.y + slopeHit.distance); }
-            else { rig.velocity = new Vector2(rig.velocity.x, 0); }
-
-            rig.gravityScale = 0;
-        } if (!IsOnSlope) { rig.gravityScale = 1; }
+        if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump")) { jumpTimecounter = 0; }
     }
 
     void Attack()
@@ -294,38 +280,20 @@ public class Scr_PlayerStateManager : MonoBehaviour
         }
     }
 
-    void TDamage()
+    public void Knockback()
     {
-        _wasHit = Physics2D.OverlapBoxAll(_hitBoxPivot.position, _playerHitBox, 0, _enemyLayer);
-
-        foreach (Collider2D hit in _wasHit) {
-            if (hit.CompareTag("Molho") && _canBeDamage) {
-                _playerLife--;
-
-                _enemyHit = hit;
-                _knockbackTrigger = true;
-                _canBeDamage = false;
-                _knockbackTimeCounter = _knobackTime;
-
-                Knockback();
-                hit.gameObject.GetComponent<Scr_MolhoStateManager>().KnockBack();
-
-                rig.velocity = new Vector2(0, 0);
-            }
-        }
-    }
-
-    void Knockback()
-    {
-        float molhoPos = gameObject.transform.position.x - _enemyHit.transform.position.x;
+        float enemyPos = gameObject.transform.position.x - _enemyHit.transform.position.x;
 
         if (_knockbackTimeCounter > 0)
         {
             _knockbackTimeCounter -= Time.deltaTime;
             _knockbackStun = true;
 
-            rig.velocity = new Vector2(Mathf.Sign(molhoPos) * _knockbackForceX, _knockbackForceY);
-        } else { _knockbackTrigger = false; _canBeDamage = true; }
+            rig.velocity = new Vector2(Mathf.Sign(enemyPos) * _knockbackForceX, _knockbackForceY);
+        } else { 
+            _knockbackTrigger = false;
+            _canBeDamage = true;
+        }
     }
 
     void AttackEnd()
@@ -337,7 +305,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Dash()
     {
-        if (IsOnFloor) { dashCounter = 1; }
+        if (IsOnFloor()) { dashCounter = 1; }
 
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxis("Dash") > 0 && !isDashing)
         {
@@ -369,20 +337,24 @@ public class Scr_PlayerStateManager : MonoBehaviour
         if (moveY < 0) { wallGravity = wallGravityMultiplier * (-moveY * 4 + 1); }
         else { wallGravity = wallGravityMultiplier; }
 
-        if (IsOnWall) {
-            rig.velocity = new Vector2(0, 0);
+        if (IsOnWall()) {
             Physics2D.gravity = new Vector2(0, wallGravity);
+            rig.velocity = new Vector2(0, 0);
+            spr.flipX = true;
+
             jumpCounter = jumpCounterMax;
             dashCounter = 1;
-            spr.flipX = true;
         } else { spr.flipX = false; }
     }
 
     void WallJump()
     {
-        if (IsOnWall) {
+        if (IsOnWall()) {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
                 rig.AddForce(new Vector2(-playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
+                
+                jumpCounter = jumpCounterMax;
+                dashCounter = 1;
             }
         }
     }
@@ -391,9 +363,24 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         _hpTransform.pivot = new Vector2(0 , 0.5f);
         _hpTransform.position = _hpMinTransform.position;
-        _hpTransform.sizeDelta = new Vector2(-1913 + (371 * _playerLife/_playerMaxLife), _hpTransform.sizeDelta.y);
+        _hpTransform.sizeDelta = new Vector2(-1920 + (370 * _playerLife/_playerMaxLife), _hpTransform.sizeDelta.y);
 
-        if (_playerLife <= 0) { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+        if (_playerLife <= 0) {
+            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+            SceneManager.MoveGameObjectToScene(_hud, SceneManager.GetActiveScene());
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    public bool IsOnFloor()
+    {
+        return Physics2D.OverlapBox(footPos.position, footArea, 0, floorLayer);
+    }
+
+    public bool IsOnWall()
+    {
+        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckDistance, 0, floorLayer)
+        && !IsOnFloor() && rig.velocity.y <= 0;
     }
 
     public void SwitchState(Scr_PlayerBaseState state)
@@ -421,9 +408,5 @@ public class Scr_PlayerStateManager : MonoBehaviour
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckDistance);
-
-        Gizmos.color = Color.green;
-
-        Gizmos.DrawWireCube(footPos.position, slopeArea);
     }
 }

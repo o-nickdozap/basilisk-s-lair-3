@@ -27,9 +27,8 @@ public class Scr_FPSCounter : MonoBehaviour
     }
     void Update()
     {
-        // Sample
         {
-            var currentFrame = (int)Math.Round(1f / Time.smoothDeltaTime); // If your game modifies Time.timeScale, use unscaledDeltaTime and smooth manually (or not).
+            var currentFrame = (int)Math.Round(1f / Time.smoothDeltaTime);
             _frameRateSamples[_averageCounter] = currentFrame;
         }
 
@@ -46,7 +45,6 @@ public class Scr_FPSCounter : MonoBehaviour
             _averageCounter = (_averageCounter + 1) % _averageFromAmount;
         }
 
-        // Assign to UI
         {
             Text.text = "FPS:" + _currentAveraged switch
             {

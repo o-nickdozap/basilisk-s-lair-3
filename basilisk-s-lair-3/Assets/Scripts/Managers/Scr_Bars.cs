@@ -2,8 +2,18 @@ using UnityEngine;
 
 public class Scr_Bars : MonoBehaviour
 {
-    void Start()
+    public static Scr_Bars _instance;
+
+    void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (_instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
 }

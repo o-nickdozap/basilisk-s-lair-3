@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1464b909ede8b440882bed347acc529, type: 3}
   m_Name: molhoData
   m_EditorClassIdentifier: 
-  DeadMolhos:
-  - 
+  DeadMolhos: []

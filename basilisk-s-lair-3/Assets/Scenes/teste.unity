@@ -1514,6 +1514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 3932862747904742715, guid: a0371a04272ad684d8c48b17fad10229, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4064401368702302828, guid: a0371a04272ad684d8c48b17fad10229, type: 3}
       propertyPath: _isReturning
       value: 1

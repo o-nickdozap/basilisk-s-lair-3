@@ -22,9 +22,9 @@ public class Scr_PlayerJumpState : Scr_PlayerBaseState
             if (!player.isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
         }
 
-        if (player.IsOnWall && !player.IsOnFloor && player.rig.velocity.y < 0) { player.SwitchState(player.WallSlideState); }
+        if (player.IsOnWall() && !player.IsOnFloor() && player.rig.velocity.y < 0) { player.SwitchState(player.WallSlideState); }
         
-        if (player.IsOnSlope && player.rig.velocity.y <= 0) { player.SwitchState(player.IdleState); }
+        if (player.rig.velocity.y <= 0) { player.SwitchState(player.IdleState); }
     }
 
     public override void OnCollisionEnter(Scr_PlayerStateManager player){
