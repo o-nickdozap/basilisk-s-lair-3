@@ -1,12 +1,10 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scr_MolhoStateManager : MonoBehaviour
 {
     private Scr_MolhoBaseState currentState;
 
-    public MolhoData _molhoData;
+    public EnemyData _molhoData;
 
     public Scr_MolhoIdleState IdleState = new Scr_MolhoIdleState();
     public Scr_MolhoChaseState ChaseState = new Scr_MolhoChaseState();
@@ -34,7 +32,7 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
         currentState.EnterState(this);
 
-        foreach(string DM in _molhoData.DeadMolhos)
+        foreach(string DM in _molhoData.DeadEnemys)
         {
             if (DM == this.name) { Destroy(this.gameObject); }
         }
@@ -69,7 +67,7 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
     void Bye()
     {
-        _molhoData.DeadMolhos.Add(this.gameObject.name);
+        _molhoData.DeadEnemys.Add(this.gameObject.name);
 
         Destroy(this.gameObject);
     }

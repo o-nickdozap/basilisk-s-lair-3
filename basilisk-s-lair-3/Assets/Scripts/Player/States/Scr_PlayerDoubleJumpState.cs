@@ -10,7 +10,10 @@ public class Scr_PlayerDoubleJumpState : Scr_PlayerBaseState
     public override void UpdateState(Scr_PlayerStateManager player)
     {
         if (player.rig.velocity.y < 0) { player.SwitchState(player.FallState); }
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack")) { player.SwitchState(player.AttackingState); }
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
+        {
+            if (player._canAttack) { player.SwitchState(player.AttackingState); }
+        }
 
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxis("Dash") > 0 && !player.isDashing) { player.SwitchState(player.DashState); }
 

@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f02ec1f4254f04e94b1e0c53f3d8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _molhoData: {fileID: 11400000, guid: 7f228aae614b24c4a805647370524fbf, type: 2}
+  _molhoData: {fileID: 11400000, guid: 43ea069c68f02f24aae31000eae3eb3e, type: 2}
   anim: {fileID: 1016766039492610390}
   rig: {fileID: 1016766039492610391}
   chaseArea: {x: 1.5, y: 1.5}
@@ -256,10 +256,10 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.26
   m_Color: {r: 0.18039216, g: 0.2509804, b: 0.4784314, a: 1}
-  m_Intensity: 1.66
+  m_Intensity: 6.23
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 7516a638c7a809e7000000003d417a39
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

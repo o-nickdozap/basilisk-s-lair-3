@@ -16,7 +16,10 @@ public class Scr_PlayerFallState : Scr_PlayerBaseState
             if (player.jumpCounter > 0) { player.SwitchState(player.DoubleJumpState); }
         }
 
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack")) { player.SwitchState(player.AttackingState); }
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
+        {
+            if (player._canAttack) { player.SwitchState(player.AttackingState); }
+        }
 
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxisRaw("Dash") > 0)
         {

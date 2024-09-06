@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class Scr_PlayerStateManager : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     #region Attack
 
+    public bool _canAttack;
+
     public bool attackEnd;
 
     public int attackDirection;
@@ -90,6 +93,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
     #endregion
 
     #region WallJump
+
+    public bool _canWall;
 
     public float wallGravity;
     private float wallGravityMultiplier;
@@ -164,13 +169,21 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         if (!_knockbackStun)
         {
-            Dash();
-            WallSlide();
-            WallJump();
+            //Dash();
             Move();
-            Attack();
 
-            if (!IsOnWall()) { Jump(); }
+            if (_canWall)
+            {
+                WallSlide();
+                WallJump();
+            }
+            
+            if (_canAttack) { Attack(); }
+
+            if (!IsOnWall())
+            {
+                Jump();
+            }
         }
 
         else if (IsOnFloor()) {
@@ -342,7 +355,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
             rig.velocity = new Vector2(0, 0);
             spr.flipX = true;
 
-            jumpCounter = jumpCounterMax;
             dashCounter = 1;
         } else { spr.flipX = false; }
     }
@@ -352,8 +364,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
         if (IsOnWall()) {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
                 rig.AddForce(new Vector2(-playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
-                
-                jumpCounter = jumpCounterMax;
+
+                jumpCounter = jumpCounterMax - 1;
                 dashCounter = 1;
             }
         }

@@ -16,7 +16,10 @@ public class Scr_PlayerIdleState : Scr_PlayerBaseState
 
         if (player.rig.velocity.y < 0 && !player.IsOnFloor()) { player.SwitchState(player.FallState); }
 
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack")) { player.SwitchState(player.AttackingState); }
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
+        {
+            if (player._canAttack) { player.SwitchState(player.AttackingState); }
+        }
 
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxisRaw("Dash") > 0)
         {

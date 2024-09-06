@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4343591722906350991
 Transform:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -461,6 +461,7 @@ MonoBehaviour:
   attackEnd: 0
   attackDirection: 0
   swordDamage: 1
+  isAttacking: 1
   attackPos: {fileID: 7887816231479309706}
   attackArea: {x: 0, y: 0}
   walkAttackArea: {x: 0.35, y: 0.45}
