@@ -12,7 +12,15 @@ public class Scr_GuardaPatrollingState : Scr_GuardaBaseState
     {
         guarda._rig.velocity = new Vector2(guarda._guardaDirection * guarda._speed, guarda._rig.velocity.y);
 
-        if (!guarda.IsOnFloor() || guarda.IsOnWall()) { guarda._guardaDirection = -guarda._guardaDirection; }
+        if (!guarda.IsOnFloor() || guarda.IsOnWall() || guarda.IsHitEnemy())
+        { 
+            guarda._guardaDirection = -guarda._guardaDirection;
+        }
+
+        if (guarda.IsOnChasing())
+        {
+            guarda.SwitchState(guarda._chaseState);
+        }
     }
 
     public override void OnCollisionEnter(Scr_GuardaStateManager guarda)

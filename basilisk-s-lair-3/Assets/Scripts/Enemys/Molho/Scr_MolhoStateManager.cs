@@ -31,11 +31,6 @@ public class Scr_MolhoStateManager : MonoBehaviour
         currentState = IdleState;
 
         currentState.EnterState(this);
-
-        foreach(string DM in _molhoData.DeadEnemys)
-        {
-            if (DM == this.name) { Destroy(this.gameObject); }
-        }
     }
 
     void Update()
@@ -67,8 +62,6 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
     void Bye()
     {
-        _molhoData.DeadEnemys.Add(this.gameObject.name);
-
         Destroy(this.gameObject);
     }
 

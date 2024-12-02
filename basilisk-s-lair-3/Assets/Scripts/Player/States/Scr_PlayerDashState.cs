@@ -4,7 +4,7 @@ public class Scr_PlayerDashState : Scr_PlayerBaseState
 {
     public override void EnterState(Scr_PlayerStateManager player)
     {
-        if (!player._knockbackStun) { player.anim.Play("Anim_player_dash"); }
+        if (!player._knockbackStun && player._canDash) { player.anim.Play("Anim_player_dash"); }
     }
 
     public override void UpdateState(Scr_PlayerStateManager player)

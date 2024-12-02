@@ -11,9 +11,9 @@ public class Scr_PlayerFallState : Scr_PlayerBaseState
     {
         if (player.IsOnFloor()) { player.SwitchState(player.IdleState); }
 
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
+        if (player._isJumping)
         {
-            if (player.jumpCounter > 0) { player.SwitchState(player.DoubleJumpState); }
+            player.SwitchState(player.DoubleJumpState);
         }
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
@@ -23,7 +23,7 @@ public class Scr_PlayerFallState : Scr_PlayerBaseState
 
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxisRaw("Dash") > 0)
         {
-            if (!player.isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
+            if (!player._isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
         }
 
         if (player.IsOnWall() && !player.IsOnFloor() && player.rig.velocity.y < 0) { player.SwitchState(player.WallSlideState); }

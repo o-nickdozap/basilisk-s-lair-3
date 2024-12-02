@@ -238,6 +238,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _footPos: {fileID: 6950681615496161142}
+  _chaseCheckDistance: 1.5
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
   _guardaDirection: 1
   _speed: 0.8
 --- !u!1 &8655971393355156349
@@ -256,7 +263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3566616788344128164
 Transform:
   m_ObjectHideFlags: 0

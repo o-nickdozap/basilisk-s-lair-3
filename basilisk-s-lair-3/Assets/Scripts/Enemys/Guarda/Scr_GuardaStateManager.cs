@@ -7,6 +7,7 @@ public class Scr_GuardaStateManager : MonoBehaviour
     private Scr_GuardaBaseState _currentState;
 
     public Scr_GuardaPatrollingState _patrollingState = new Scr_GuardaPatrollingState();
+    public Scr_GuardaChaseState _chaseState = new Scr_GuardaChaseState();
 
     public Animator _anim;
     public Rigidbody2D _rig;
@@ -20,6 +21,11 @@ public class Scr_GuardaStateManager : MonoBehaviour
     [SerializeField] float _floorCheckDistance;
     [SerializeField] LayerMask _floorLayerMask;
     [SerializeField] Transform _footPos;
+
+    [SerializeField] float _chaseCheckDistance;
+
+    [SerializeField] LayerMask _playerLayer;
+    [SerializeField] LayerMask _enemyLayer;
 
     public int _guardaDirection = 1;
     public float _speed = 0.8f;
@@ -57,6 +63,28 @@ public class Scr_GuardaStateManager : MonoBehaviour
         return Physics2D.Raycast(_footPos.position, new Vector2(_guardaDirection, 0), _floorCheckDistance, _floorLayerMask);
     }
 
+    public bool IsHitEnemy()
+    {
+        RaycastHit2D _isHitEnemy = Physics2D.Raycast(_footPos.position, new Vector2(_guardaDirection, 0), _floorCheckDistance, _enemyLayer);
+
+        if (_isHitEnemy)
+        {
+            if (_isHitEnemy.collider.name == this.name)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsOnChasing()
+    {
+        return Physics2D.Raycast(this.transform.position, new Vector2(_guardaDirection, 0), _chaseCheckDistance, _playerLayer); ;
+    }
+
     public void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -76,6 +104,12 @@ public class Scr_GuardaStateManager : MonoBehaviour
         }
     }
 
+    public void SwitchState(Scr_GuardaBaseState state)
+    {
+        _currentState = state;
+        state.EnterState(this);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -83,5 +117,9 @@ public class Scr_GuardaStateManager : MonoBehaviour
         Gizmos.DrawRay(_footPos.position, Vector2.down * _footCheckDistance);
 
         Gizmos.DrawRay(_footPos.position, new Vector2(_guardaDirection * _floorCheckDistance, 0));
+
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawRay(this.transform.position, new Vector2(_guardaDirection * _chaseCheckDistance, 0));
     }
 }

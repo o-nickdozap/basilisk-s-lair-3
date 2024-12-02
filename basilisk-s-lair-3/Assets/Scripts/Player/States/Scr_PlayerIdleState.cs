@@ -23,7 +23,7 @@ public class Scr_PlayerIdleState : Scr_PlayerBaseState
 
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxisRaw("Dash") > 0)
         {
-            if (!player.isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
+            if (!player._isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
         }
     }
 

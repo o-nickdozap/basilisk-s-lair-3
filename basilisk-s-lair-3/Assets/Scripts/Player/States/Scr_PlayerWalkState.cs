@@ -17,7 +17,7 @@ public class Scr_PlayerWalkState : Scr_PlayerBaseState
             if (player._canAttack) { player.SwitchState(player.AttackingState); }
         }
 
-        if (Input.GetKey(KeyCode.C) || Input.GetAxis("Dash") > 0 && !player.isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
+        if (Input.GetKey(KeyCode.C) || Input.GetAxis("Dash") > 0 && !player._isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
     }
 
     public override void OnCollisionEnter(Scr_PlayerStateManager player){

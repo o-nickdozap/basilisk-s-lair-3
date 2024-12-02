@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class Scr_PlayerStateManager : MonoBehaviour
 {
@@ -20,25 +19,43 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     public Vector2 _startScenePosition;
 
+    [Header("Components")]
     public Animator anim;
     public Rigidbody2D rig;
     public SpriteRenderer spr;
+
+    [Header("Triggers")]
+    public bool _canAttack;
+    public bool _canDash;
+    public bool _canWall;
+
+    [Header("Counters Max")]
+    public int jumpCounterMax;
+    public float dashCounterMax;
+
+    [Header("Pos")]
+    [SerializeField] Transform _footPos;
+    [SerializeField] Transform _attackPos;
+    [SerializeField] Transform _wallCheckPos;
+    [SerializeField] Transform _lastFootPos;
+    [SerializeField] Transform _hitBoxPivot;
 
     #region Move
 
     public float move;
     private float moveY;
-    public float speed = 1.5f;
+    public float speed = 1.5f; 
+    private Vector3 _lastFloorPos;
+    [SerializeField] float _lastFootCheckDistance;
 
     #endregion
 
     #region Jump
 
-    //public bool IsOnFloor;
+    public bool _isJumping;
 
-    public Transform footPos;
     public Vector2 footArea;
-    public LayerMask floorLayer;
+    public LayerMask _floorLayer;
 
     public float jumpForce;
     public float jumpTime;
@@ -47,7 +64,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public float gravity;
     public float fallGravity;
     public int jumpCounter;
-    public int jumpCounterMax;
 
     #endregion
 
@@ -59,8 +75,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     #region Attack
 
-    public bool _canAttack;
-
     public bool attackEnd;
 
     public int attackDirection;
@@ -71,7 +85,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     bool isAttacking = false;
 
-    public Transform attackPos;
+    
     public Vector2 attackArea;
     public Vector2 walkAttackArea;
     public Vector2 idleAttackArea;
@@ -85,21 +99,17 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public float dashTime;
     public float dashTimeCounter;
 
-    public float dashCounter = 1;
+    public float dashCounter;
 
-    public bool isDashing;
-    public bool _canDash;
+    public bool _isDashing;
 
     #endregion
 
     #region WallJump
 
-    public bool _canWall;
-
     public float wallGravity;
     private float wallGravityMultiplier;
     public Vector2 wallCheckDistance;
-    public Transform wallCheckPos;
     public bool resetYVelocityTrigger;
     public float walljumpForceX;
     public float walljumpForceY;
@@ -115,9 +125,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     [SerializeField] Vector2 _playerHitBox;
     [SerializeField] LayerMask _enemyLayer;
-    [SerializeField] Transform _hitBoxPivot;
 
-    private Collider2D[] _wasHit;
     public bool _canBeDamage = true;
 
     [SerializeField] public float _knobackTime;
@@ -154,7 +162,26 @@ public class Scr_PlayerStateManager : MonoBehaviour
         attackArea = idleAttackArea;
         wallGravityMultiplier = wallGravity;
 
+        _hud = GameObject.Find("Hud");
+        _hpTransform = GameObject.Find("HealthBar").GetComponent<RectTransform>();
+        _hpMinTransform = GameObject.Find("Anchor").transform;
+
         currentState.EnterState(this);
+    }
+
+    private void FixedUpdate()
+    {
+        if (!_knockbackStun)
+        {
+            Move();
+
+            if (!IsOnWall())
+            {
+                Jump();
+
+                if (_canDash) { Dash(); }
+            }
+        }
     }
 
     void Update()
@@ -163,15 +190,19 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         _playerData.gameTime += Time.deltaTime;
 
-        if (!IsOnWall()) { PlayerDirection(); }
+        move = Input.GetAxisRaw("Horizontal");
+        moveY = Input.GetAxisRaw("Vertical");
+
+        LastFloor();
+
+        PlayerDirection();
+
+        DashInput();
 
         if (_knockbackTrigger) { Knockback(); }
 
         if (!_knockbackStun)
         {
-            //Dash();
-            Move();
-
             if (_canWall)
             {
                 WallSlide();
@@ -180,10 +211,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
             
             if (_canAttack) { Attack(); }
 
-            if (!IsOnWall())
-            {
-                Jump();
-            }
+            if (!IsOnWall()) { JumpInput(); }
         }
 
         else if (IsOnFloor()) {
@@ -191,6 +219,26 @@ public class Scr_PlayerStateManager : MonoBehaviour
         }
 
         Life();
+
+        //Debug.Log(_isJumping + " " + jumpTimecounter);
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Time.timeScale = 0.33f;
+        }
+        else if (Input.GetKeyDown(KeyCode.M))
+        {
+            Time.timeScale = 1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Application.targetFrameRate = 10;
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            Application.targetFrameRate = 60;
+        }
     }
 
     void PlayerDirection()
@@ -202,13 +250,10 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Move()
     {
-        move = Input.GetAxisRaw("Horizontal");
-        moveY = Input.GetAxisRaw("Vertical");
-
         rig.velocity = new Vector2(move * speed, rig.velocity.y);
     }
 
-    void Jump()
+    void JumpInput()
     {
         if (rig.velocity.y <= 0 && !IsOnWall())
         {
@@ -218,6 +263,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
             }
             else {
                 jumpCounter = jumpCounterMax;
+                _isJumping = false;
             }
         }
         else
@@ -230,21 +276,24 @@ public class Scr_PlayerStateManager : MonoBehaviour
         {
             if (IsOnFloor() && jumpCounter > 0)
             {
-                rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+                _isJumping = true;
 
                 jumpTimecounter = jumpTime;
                 jumpCounter -= 1;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
+        if (jumpCounterMax >= 2)
         {
-            if (!IsOnFloor() && jumpCounter > 0)
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
             {
-                rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+                if (!IsOnFloor() && jumpCounter > 0)
+                {
+                    _isJumping = true;
 
-                jumpTimecounter = jumpTime;
-                jumpCounter -= 2;
+                    jumpTimecounter = jumpTime;
+                    jumpCounter -= 2;
+                }
             }
         }
 
@@ -252,12 +301,31 @@ public class Scr_PlayerStateManager : MonoBehaviour
         {
             if (jumpTimecounter > 0)
             {
-                rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+                _isJumping = true;
 
                 jumpTimecounter -= Time.deltaTime;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump")) { jumpTimecounter = 0; }
+
+        if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump"))
+        { 
+            jumpTimecounter = 0;
+            _isJumping = false;
+        }
+
+        if (jumpTimecounter <= 0)
+        {
+            jumpTimecounter = 0;
+            _isJumping = false;
+        }
+    }
+
+    void Jump()
+    {
+        if (_isJumping)
+        {
+            rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+        }
     }
 
     void Attack()
@@ -285,7 +353,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void AttackDamage()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackPos.position, attackArea, 0, enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(_attackPos.position, attackArea, 0, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.CompareTag("Molho")) { enemy.GetComponent<Scr_MolhoStateManager>().Damage(swordDamage); }
@@ -316,35 +384,46 @@ public class Scr_PlayerStateManager : MonoBehaviour
         attackEnd = true;
     }
 
-    void Dash()
+    void DashInput()
     {
-        if (IsOnFloor()) { dashCounter = 1; }
-
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetAxis("Dash") > 0 && !isDashing)
+        if (IsOnFloor())
         {
-            if (dashCounter > 0)
+            dashCounter = dashCounterMax;
+        }
+
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetAxisRaw("Dash") > 0)
+        {
+            if (dashCounter > 0 && !_isDashing)
             {
                 dashTimeCounter = dashTime;
                 isAttacking = false;
-                isDashing = true;
+
+                _isDashing = true;
                 dashCounter--;
             }
         }
 
-        if (dashTimeCounter <= 0 && Input.GetAxis("Dash") == 0)
+        if (_isDashing)
         {
-            dashTimeCounter = 0;
-            isDashing = false;
+            dashTimeCounter -= Time.deltaTime;
         }
 
-        if (dashTimeCounter > 0)
+        if (dashTimeCounter <= 0 && Input.GetAxisRaw("Dash") == 0)
         {
-            rig.AddForce(new Vector2(((dashForce * 10000) * playerDirection) * Time.deltaTime, 0), ForceMode2D.Force);
-            rig.velocity = new Vector2(rig.velocity.x, 0);
-            dashTimeCounter -= Time.deltaTime;
+            _isDashing = false;
+            dashTimeCounter = 0;
         }
     }
     
+    void Dash()
+    {
+        if (dashTimeCounter > 0)
+        {
+            Physics2D.gravity = new Vector2(0, 0);
+            rig.velocity = new Vector2((dashForce * playerDirection), 0);
+        }
+    }
+
     void WallSlide()
     {
         if (moveY < 0) { wallGravity = wallGravityMultiplier * (-moveY * 4 + 1); }
@@ -355,18 +434,20 @@ public class Scr_PlayerStateManager : MonoBehaviour
             rig.velocity = new Vector2(0, 0);
             spr.flipX = true;
 
-            dashCounter = 1;
+            dashCounter = dashCounterMax;
         } else { spr.flipX = false; }
     }
 
     void WallJump()
     {
-        if (IsOnWall()) {
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) {
+        if (IsOnWall())
+        {
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
+            {
                 rig.AddForce(new Vector2(-playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
 
                 jumpCounter = jumpCounterMax - 1;
-                dashCounter = 1;
+                dashCounter = dashCounterMax;
             }
         }
     }
@@ -379,19 +460,18 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         if (_playerLife <= 0) {
             SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
-            SceneManager.MoveGameObjectToScene(_hud, SceneManager.GetActiveScene());
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
     public bool IsOnFloor()
     {
-        return Physics2D.OverlapBox(footPos.position, footArea, 0, floorLayer);
+        return Physics2D.OverlapBox(_footPos.position, footArea, 0, _floorLayer);
     }
 
     public bool IsOnWall()
     {
-        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckDistance, 0, floorLayer)
+        return Physics2D.OverlapBox(_wallCheckPos.position, wallCheckDistance, 0, _floorLayer)
         && !IsOnFloor() && rig.velocity.y <= 0;
     }
 
@@ -403,22 +483,40 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     public void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode){
         this.transform.position = _startScenePosition;
+
+        rig.velocity = new Vector2(move * speed, 0);
+        _isJumping = false;
+    }
+
+    private void OnBecameInvisible()
+    {
+        transform.position = _lastFloorPos;
+    }
+
+    void LastFloor()
+    {
+        if (Physics2D.Raycast(_footPos.position, Vector2.down, _lastFootCheckDistance, _floorLayer))
+        {
+            _lastFloorPos = this.transform.position;
+        }
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
 
-        Gizmos.DrawWireCube(footPos.position, footArea);
+        Gizmos.DrawWireCube(_footPos.position, footArea);
 
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireCube(_hitBoxPivot.position, _playerHitBox);
 
-        Gizmos.DrawWireCube(attackPos.position, attackArea);
+        Gizmos.DrawWireCube(_attackPos.position, attackArea);
 
         Gizmos.color = Color.blue;
 
-        Gizmos.DrawWireCube(wallCheckPos.position, wallCheckDistance);
+        Gizmos.DrawWireCube(_wallCheckPos.position, wallCheckDistance);
+
+        Gizmos.DrawRay(_lastFootPos.position, Vector2.down * _lastFootCheckDistance);
     }
 }

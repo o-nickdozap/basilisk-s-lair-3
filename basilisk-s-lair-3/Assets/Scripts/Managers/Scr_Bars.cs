@@ -6,7 +6,7 @@ public class Scr_Bars : MonoBehaviour
 
     void Awake()
     {
-        if (_instance != null)
+        /*if (_instance != null)
         {
             Destroy(this.gameObject);
         }
@@ -14,6 +14,6 @@ public class Scr_Bars : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(this);
-        }
+        }*/
     }
 }
