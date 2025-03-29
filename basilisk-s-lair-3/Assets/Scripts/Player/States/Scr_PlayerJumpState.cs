@@ -9,14 +9,14 @@ public class Scr_PlayerJumpState : Scr_PlayerBaseState
 
     public override void UpdateState(Scr_PlayerStateManager player)
     {
-        if (player.IsOnFloor() && player.rig.velocity.y <= 0) { player.SwitchState(player.IdleState); }
+        if (player.IsOnFloor() && player.rig.linearVelocity.y <= 0) { player.SwitchState(player.IdleState); }
 
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
         {
             player.SwitchState(player.DoubleJumpState);
         }
 
-        if (player.rig.velocity.y < 0) { player.SwitchState(player.FallState); }
+        if (player.rig.linearVelocity.y < 0) { player.SwitchState(player.FallState); }
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
         {
@@ -28,7 +28,7 @@ public class Scr_PlayerJumpState : Scr_PlayerBaseState
             if (!player._isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
         }
 
-        if (player.IsOnWall() && !player.IsOnFloor() && player.rig.velocity.y < 0) { player.SwitchState(player.WallSlideState); }
+        if (player.IsOnWall() && !player.IsOnFloor() && player.rig.linearVelocity.y < 0) { player.SwitchState(player.WallSlideState); }
     }
 
     public override void OnCollisionEnter(Scr_PlayerStateManager player){

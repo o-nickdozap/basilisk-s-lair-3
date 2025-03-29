@@ -44,7 +44,7 @@ public class Scr_Jumptrought : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.name == "Player" && _playerRig.velocity.y > 0)
+        if (collision.collider.name == "Player" && _playerRig.linearVelocity.y > 0)
         {
             _boxCollider.enabled = false;
         }

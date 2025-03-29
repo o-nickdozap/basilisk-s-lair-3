@@ -50,7 +50,7 @@ public class Scr_GuardaStateManager : MonoBehaviour
 
     public void KnockBack()
     {
-        _rig.velocity = new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, Mathf.Sign(playerPos.y) * _knockForceY);
+        _rig.linearVelocity = new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, Mathf.Sign(playerPos.y) * _knockForceY);
     }
 
     public bool IsOnFloor()
@@ -100,7 +100,7 @@ public class Scr_GuardaStateManager : MonoBehaviour
             _player._knockbackTimeCounter = _player._knobackTime;
             _player.Knockback();
 
-            _player.rig.velocity = new Vector2(0, 0);
+            _player.rig.linearVelocity = new Vector2(0, 0);
         }
     }
 

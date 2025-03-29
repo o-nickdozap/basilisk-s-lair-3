@@ -10,7 +10,7 @@ public class Scr_GuardaPatrollingState : Scr_GuardaBaseState
 
     public override void UpdateState(Scr_GuardaStateManager guarda)
     {
-        guarda._rig.velocity = new Vector2(guarda._guardaDirection * guarda._speed, guarda._rig.velocity.y);
+        guarda._rig.linearVelocity = new Vector2(guarda._guardaDirection * guarda._speed, guarda._rig.linearVelocity.y);
 
         if (!guarda.IsOnFloor() || guarda.IsOnWall() || guarda.IsHitEnemy())
         { 

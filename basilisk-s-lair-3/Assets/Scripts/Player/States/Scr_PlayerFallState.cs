@@ -26,7 +26,7 @@ public class Scr_PlayerFallState : Scr_PlayerBaseState
             if (!player._isDashing && player.dashCounter > 0) { player.SwitchState(player.DashState); }
         }
 
-        if (player.IsOnWall() && !player.IsOnFloor() && player.rig.velocity.y < 0) { player.SwitchState(player.WallSlideState); }
+        if (player.IsOnWall() && !player.IsOnFloor() && player.rig.linearVelocity.y < 0) { player.SwitchState(player.WallSlideState); }
     }
 
     public override void OnCollisionEnter(Scr_PlayerStateManager player)

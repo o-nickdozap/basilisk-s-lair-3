@@ -10,7 +10,7 @@ public class Scr_PlayerWalkState : Scr_PlayerBaseState
         if (player.move == 0) { player.SwitchState(player.IdleState); }
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) { player.SwitchState(player.JumpState); }
 
-        if (player.rig.velocity.y < 0 && !player.IsOnFloor()) { player.SwitchState(player.FallState); }
+        if (player.rig.linearVelocity.y < 0 && !player.IsOnFloor()) { player.SwitchState(player.FallState); }
 
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
         {

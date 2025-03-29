@@ -10,7 +10,7 @@ public class Scr_GuardaChaseState : Scr_GuardaBaseState
     public override void UpdateState(Scr_GuardaStateManager guarda)
     {
         guarda._guardaDirection = (int)Mathf.Sign(guarda.playerObject.transform.position.x - guarda.transform.position.x);
-        guarda._rig.velocity = new Vector2(guarda._guardaDirection * guarda._speed * 1.5f, guarda._rig.velocity.y);
+        guarda._rig.linearVelocity = new Vector2(guarda._guardaDirection * guarda._speed * 1.5f, guarda._rig.linearVelocity.y);
 
         if (!guarda.IsOnChasing())
         {

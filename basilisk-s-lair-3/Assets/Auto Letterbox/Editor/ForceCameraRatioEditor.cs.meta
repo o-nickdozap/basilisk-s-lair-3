@@ -10,3 +10,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 56814
+  packageName: Auto Letterbox
+  packageVersion: 1.0.3
+  assetPath: Assets/Auto Letterbox/Editor/ForceCameraRatioEditor.cs
+  uploadId: 398580

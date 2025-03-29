@@ -250,12 +250,12 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Move()
     {
-        rig.velocity = new Vector2(move * speed, rig.velocity.y);
+        rig.linearVelocity = new Vector2(move * speed, rig.linearVelocity.y);
     }
 
     void JumpInput()
     {
-        if (rig.velocity.y <= 0 && !IsOnWall())
+        if (rig.linearVelocity.y <= 0 && !IsOnWall())
         {
             if (!IsOnFloor())
             {
@@ -324,7 +324,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         if (_isJumping)
         {
-            rig.velocity = new Vector2(rig.velocity.x, jumpForce);
+            rig.linearVelocity = new Vector2(rig.linearVelocity.x, jumpForce);
         }
     }
 
@@ -337,7 +337,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
                 isAttacking = true;
                 attackDirection = playerDirection;
 
-                if (rig.velocity == Vector2.zero) { attackArea = idleAttackArea; }
+                if (rig.linearVelocity == Vector2.zero) { attackArea = idleAttackArea; }
 
                 else { attackArea = walkAttackArea; }
 
@@ -370,7 +370,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
             _knockbackTimeCounter -= Time.deltaTime;
             _knockbackStun = true;
 
-            rig.velocity = new Vector2(Mathf.Sign(enemyPos) * _knockbackForceX, _knockbackForceY);
+            rig.linearVelocity = new Vector2(Mathf.Sign(enemyPos) * _knockbackForceX, _knockbackForceY);
         } else { 
             _knockbackTrigger = false;
             _canBeDamage = true;
@@ -420,7 +420,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
         if (dashTimeCounter > 0)
         {
             Physics2D.gravity = new Vector2(0, 0);
-            rig.velocity = new Vector2((dashForce * playerDirection), 0);
+            rig.linearVelocity = new Vector2((dashForce * playerDirection), 0);
         }
     }
 
@@ -431,7 +431,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         if (IsOnWall()) {
             Physics2D.gravity = new Vector2(0, wallGravity);
-            rig.velocity = new Vector2(0, 0);
+            rig.linearVelocity = new Vector2(0, 0);
             spr.flipX = true;
 
             dashCounter = dashCounterMax;
@@ -472,19 +472,20 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public bool IsOnWall()
     {
         return Physics2D.OverlapBox(_wallCheckPos.position, wallCheckDistance, 0, _floorLayer)
-        && !IsOnFloor() && rig.velocity.y <= 0;
+        && !IsOnFloor() && rig.linearVelocity.y <= 0;
     }
 
     public void SwitchState(Scr_PlayerBaseState state)
     {
         currentState = state;
         state.EnterState(this);
+        Debug.Log(currentState);
     }
 
     public void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode){
         this.transform.position = _startScenePosition;
 
-        rig.velocity = new Vector2(move * speed, 0);
+        rig.linearVelocity = new Vector2(move * speed, 0);
         _isJumping = false;
     }
 

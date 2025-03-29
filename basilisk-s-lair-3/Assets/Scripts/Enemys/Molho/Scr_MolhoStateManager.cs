@@ -52,7 +52,7 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
     public void KnockBack()
     {
-        rig.velocity = new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, Mathf.Sign(playerPos.y) * _knockForceY);
+        rig.linearVelocity = new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, Mathf.Sign(playerPos.y) * _knockForceY);
     }
 
     void Die()
@@ -87,7 +87,7 @@ public class Scr_MolhoStateManager : MonoBehaviour
             _player._knockbackTimeCounter = _player._knobackTime;
             _player.Knockback();
 
-            _player.rig.velocity = new Vector2(0, 0);
+            _player.rig.linearVelocity = new Vector2(0, 0);
         }
     }
 
