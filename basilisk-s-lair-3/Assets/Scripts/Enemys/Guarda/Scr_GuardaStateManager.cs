@@ -100,7 +100,7 @@ public class Scr_GuardaStateManager : MonoBehaviour
             _player._knockbackTimeCounter = _player._knobackTime;
             _player.Knockback();
 
-            _player.rig.linearVelocity = new Vector2(0, 0);
+            _player.pVariables.rig.linearVelocity = new Vector2(0, 0);
         }
     }
 

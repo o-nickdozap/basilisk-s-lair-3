@@ -4,7 +4,10 @@ using UnityEngine.SceneManagement;
 public class Scr_PlayerStateManager : MonoBehaviour
 {
     private Scr_PlayerBaseState currentState;
-    public PlayerData _playerData;
+
+    public PlayerVariables pVariables;
+    [SerializeField] Scr_PlayerJump _playerJump;
+    public Scr_PlayerDash _playerDash;
 
     public static Scr_PlayerStateManager _instance;
 
@@ -19,19 +22,10 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     public Vector2 _startScenePosition;
 
-    [Header("Components")]
-    public Animator anim;
-    public Rigidbody2D rig;
-    public SpriteRenderer spr;
-
     [Header("Triggers")]
     public bool _canAttack;
     public bool _canDash;
     public bool _canWall;
-
-    [Header("Counters Max")]
-    public int jumpCounterMax;
-    public float dashCounterMax;
 
     [Header("Pos")]
     [SerializeField] Transform _footPos;
@@ -42,34 +36,9 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     #region Move
 
-    public float move;
     private float moveY;
-    public float speed = 1.5f; 
     private Vector3 _lastFloorPos;
     [SerializeField] float _lastFootCheckDistance;
-
-    #endregion
-
-    #region Jump
-
-    public bool _isJumping;
-
-    public Vector2 footArea;
-    public LayerMask _floorLayer;
-
-    public float jumpForce;
-    public float jumpTime;
-    public float jumpTimecounter;
-
-    public float gravity;
-    public float fallGravity;
-    public int jumpCounter;
-
-    #endregion
-
-    #region Animation Manager
-
-    public int playerDirection = 1;
 
     #endregion
 
@@ -90,18 +59,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public Vector2 walkAttackArea;
     public Vector2 idleAttackArea;
     public LayerMask enemyLayer;
-
-    #endregion
-
-    #region Dash
-
-    public float dashForce;
-    public float dashTime;
-    public float dashTimeCounter;
-
-    public float dashCounter;
-
-    public bool _isDashing;
 
     #endregion
 
@@ -155,7 +112,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoad;
+        //SceneManager.sceneLoaded += OnSceneLoad;
 
         currentState = IdleState;
 
@@ -173,13 +130,12 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         if (!_knockbackStun)
         {
-            Move();
+
+            //Move();
 
             if (!IsOnWall())
             {
-                Jump();
-
-                if (_canDash) { Dash(); }
+                //Jump();
             }
         }
     }
@@ -188,16 +144,11 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         currentState.UpdateState(this);
 
-        _playerData.gameTime += Time.deltaTime;
+        pVariables.gameTime += Time.deltaTime;
 
-        move = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 
         LastFloor();
-
-        PlayerDirection();
-
-        DashInput();
 
         if (_knockbackTrigger) { Knockback(); }
 
@@ -208,13 +159,17 @@ public class Scr_PlayerStateManager : MonoBehaviour
                 WallSlide();
                 WallJump();
             }
-            
+
             if (_canAttack) { Attack(); }
 
-            if (!IsOnWall()) { JumpInput(); }
+            if (!IsOnWall())
+            {
+                //JumpInput();
+            }
         }
 
-        else if (IsOnFloor()) {
+        else if (IsOnFloor())
+        {
             _knockbackStun = false;
         }
 
@@ -241,93 +196,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
         }
     }
 
-    void PlayerDirection()
-    {
-        playerDirection = (move != 0) ? (int)Mathf.Sign(move) : playerDirection;
-
-        gameObject.transform.localScale = new Vector3(playerDirection, 1, 1);
-    }
-
-    void Move()
-    {
-        rig.linearVelocity = new Vector2(move * speed, rig.linearVelocity.y);
-    }
-
-    void JumpInput()
-    {
-        if (rig.linearVelocity.y <= 0 && !IsOnWall())
-        {
-            if (!IsOnFloor())
-            {
-                Physics2D.gravity = new Vector2(0, fallGravity);
-            }
-            else {
-                jumpCounter = jumpCounterMax;
-                _isJumping = false;
-            }
-        }
-        else
-        {
-            Physics2D.gravity = new Vector2(0, gravity);
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
-        {
-            if (IsOnFloor() && jumpCounter > 0)
-            {
-                _isJumping = true;
-
-                jumpTimecounter = jumpTime;
-                jumpCounter -= 1;
-            }
-        }
-
-        if (jumpCounterMax >= 2)
-        {
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
-            {
-                if (!IsOnFloor() && jumpCounter > 0)
-                {
-                    _isJumping = true;
-
-                    jumpTimecounter = jumpTime;
-                    jumpCounter -= 2;
-                }
-            }
-        }
-
-        if (Input.GetKey(KeyCode.Z) || Input.GetButton("Jump"))
-        {
-            if (jumpTimecounter > 0)
-            {
-                _isJumping = true;
-
-                jumpTimecounter -= Time.deltaTime;
-            }
-        }
-
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetButtonUp("Jump"))
-        { 
-            jumpTimecounter = 0;
-            _isJumping = false;
-        }
-
-        if (jumpTimecounter <= 0)
-        {
-            jumpTimecounter = 0;
-            _isJumping = false;
-        }
-    }
-
-    void Jump()
-    {
-        if (_isJumping)
-        {
-            rig.linearVelocity = new Vector2(rig.linearVelocity.x, jumpForce);
-        }
-    }
-
     void Attack()
     {
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
@@ -335,9 +203,9 @@ public class Scr_PlayerStateManager : MonoBehaviour
             if (!isAttacking)
             {
                 isAttacking = true;
-                attackDirection = playerDirection;
+                attackDirection = pVariables._playerDirection;
 
-                if (rig.linearVelocity == Vector2.zero) { attackArea = idleAttackArea; }
+                if (pVariables.rig.linearVelocity == Vector2.zero) { attackArea = idleAttackArea; }
 
                 else { attackArea = walkAttackArea; }
 
@@ -370,7 +238,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
             _knockbackTimeCounter -= Time.deltaTime;
             _knockbackStun = true;
 
-            rig.linearVelocity = new Vector2(Mathf.Sign(enemyPos) * _knockbackForceX, _knockbackForceY);
+            pVariables.rig.linearVelocity = new Vector2(Mathf.Sign(enemyPos) * _knockbackForceX, _knockbackForceY);
         } else { 
             _knockbackTrigger = false;
             _canBeDamage = true;
@@ -384,46 +252,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
         attackEnd = true;
     }
 
-    void DashInput()
-    {
-        if (IsOnFloor())
-        {
-            dashCounter = dashCounterMax;
-        }
-
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetAxisRaw("Dash") > 0)
-        {
-            if (dashCounter > 0 && !_isDashing)
-            {
-                dashTimeCounter = dashTime;
-                isAttacking = false;
-
-                _isDashing = true;
-                dashCounter--;
-            }
-        }
-
-        if (_isDashing)
-        {
-            dashTimeCounter -= Time.deltaTime;
-        }
-
-        if (dashTimeCounter <= 0 && Input.GetAxisRaw("Dash") == 0)
-        {
-            _isDashing = false;
-            dashTimeCounter = 0;
-        }
-    }
-    
-    void Dash()
-    {
-        if (dashTimeCounter > 0)
-        {
-            Physics2D.gravity = new Vector2(0, 0);
-            rig.linearVelocity = new Vector2((dashForce * playerDirection), 0);
-        }
-    }
-
     void WallSlide()
     {
         if (moveY < 0) { wallGravity = wallGravityMultiplier * (-moveY * 4 + 1); }
@@ -431,11 +259,11 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         if (IsOnWall()) {
             Physics2D.gravity = new Vector2(0, wallGravity);
-            rig.linearVelocity = new Vector2(0, 0);
-            spr.flipX = true;
+            pVariables.rig.linearVelocity = new Vector2(0, 0);
+            pVariables.spr.flipX = true;
 
-            dashCounter = dashCounterMax;
-        } else { spr.flipX = false; }
+            _playerDash.dashCounter = pVariables._dashCounterMax;
+        } else { pVariables.spr.flipX = false; }
     }
 
     void WallJump()
@@ -444,10 +272,10 @@ public class Scr_PlayerStateManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
             {
-                rig.AddForce(new Vector2(-playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
+                pVariables.rig.AddForce(new Vector2(-pVariables._playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
 
-                jumpCounter = jumpCounterMax - 1;
-                dashCounter = dashCounterMax;
+                //jumpCounter = jumpCounterMax - 1;
+                _playerDash.dashCounter = pVariables._dashCounterMax;
             }
         }
     }
@@ -466,13 +294,13 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     public bool IsOnFloor()
     {
-        return Physics2D.OverlapBox(_footPos.position, footArea, 0, _floorLayer);
+        return Physics2D.OverlapBox(_footPos.position, _playerJump._footArea, 0, pVariables.floorLayer);
     }
 
     public bool IsOnWall()
     {
-        return Physics2D.OverlapBox(_wallCheckPos.position, wallCheckDistance, 0, _floorLayer)
-        && !IsOnFloor() && rig.linearVelocity.y <= 0;
+        return Physics2D.OverlapBox(_wallCheckPos.position, wallCheckDistance, 0, pVariables.floorLayer)
+        && !IsOnFloor() && pVariables.rig.linearVelocity.y <= 0;
     }
 
     public void SwitchState(Scr_PlayerBaseState state)
@@ -482,12 +310,12 @@ public class Scr_PlayerStateManager : MonoBehaviour
         Debug.Log(currentState);
     }
 
-    public void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode){
+    /*public void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode){
         this.transform.position = _startScenePosition;
 
         rig.linearVelocity = new Vector2(move * speed, 0);
         _isJumping = false;
-    }
+    }*/
 
     private void OnBecameInvisible()
     {
@@ -496,7 +324,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     void LastFloor()
     {
-        if (Physics2D.Raycast(_footPos.position, Vector2.down, _lastFootCheckDistance, _floorLayer))
+        if (Physics2D.Raycast(_footPos.position, Vector2.down, _lastFootCheckDistance, pVariables.floorLayer))
         {
             _lastFloorPos = this.transform.position;
         }
@@ -506,7 +334,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         Gizmos.color = Color.white;
 
-        Gizmos.DrawWireCube(_footPos.position, footArea);
+        Gizmos.DrawWireCube(_footPos.position, _playerJump._footArea);
 
         Gizmos.color = Color.red;
 
@@ -520,4 +348,6 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         Gizmos.DrawRay(_lastFootPos.position, Vector2.down * _lastFootCheckDistance);
     }
+
+
 }

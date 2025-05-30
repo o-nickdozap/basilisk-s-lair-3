@@ -280,8 +280,11 @@ GameObject:
   - component: {fileID: 3079941285027256419}
   - component: {fileID: 2506137915863094165}
   - component: {fileID: 5980710939229361621}
+  - component: {fileID: 5959216799673556136}
   - component: {fileID: 7201171741590216856}
-  - component: {fileID: 3308563562454393442}
+  - component: {fileID: 6602215903296433612}
+  - component: {fileID: 8889615420272368224}
+  - component: {fileID: 4274321996052664225}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -468,6 +471,32 @@ PolygonCollider2D:
       - {x: 0.07907908, y: -0.120260276}
       - {x: 0.08, y: 0.1}
   m_UseDelaunayMesh: 0
+--- !u!114 &5959216799673556136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547473181133355828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720d796ef0ba2c94bb96dcb5fbd624c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTime: 0
+  Manager: {fileID: 7201171741590216856}
+  rig: {fileID: 2506137915863094165}
+  anim: {fileID: 3079941285027256419}
+  spr: {fileID: 9129465534342438001}
+  move: 0
+  _playerDirection: 0
+  jumpCounterMax: 2
+  _isJumping: 0
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _dashCounterMax: 1
+  _isDashing: 0
 --- !u!114 &7201171741590216856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,36 +509,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e26a683a84002f4da0df562778b09f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerData: {fileID: 11400000, guid: 7b552554b38af164688acecb91b45e5f, type: 2}
+  pVariables: {fileID: 5959216799673556136}
+  _playerJump: {fileID: 8889615420272368224}
+  _playerDash: {fileID: 4274321996052664225}
   _startScenePosition: {x: 0, y: 0}
-  anim: {fileID: 3079941285027256419}
-  rig: {fileID: 2506137915863094165}
-  spr: {fileID: 9129465534342438001}
   _canAttack: 1
   _canDash: 1
   _canWall: 1
-  jumpCounterMax: 2
-  dashCounterMax: 1
   _footPos: {fileID: 7106769544687357347}
   _attackPos: {fileID: 7887816231479309706}
   _wallCheckPos: {fileID: 6722934447744015744}
   _lastFootPos: {fileID: 2189197629068518325}
   _hitBoxPivot: {fileID: 2237445997283649054}
-  move: 0
-  speed: 1.5
   _lastFootCheckDistance: 0.04
-  _isJumping: 0
-  footArea: {x: 0.11, y: 0.05}
-  _floorLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  jumpForce: 1.5
-  jumpTime: 0.3
-  jumpTimecounter: 0
-  gravity: -8
-  fallGravity: -13
-  jumpCounter: 0
-  playerDirection: 1
   attackEnd: 0
   attackDirection: 0
   swordDamage: 1
@@ -519,11 +531,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  dashForce: 5
-  dashTime: 0.15
-  dashTimeCounter: 0
-  dashCounter: 0
-  _isDashing: 0
   wallGravity: -10
   wallCheckDistance: {x: 0.12, y: 0.2}
   resetYVelocityTrigger: 0
@@ -547,103 +554,49 @@ MonoBehaviour:
   _knockbackForceY: 1
   _hpTransform: {fileID: 6717696653873180808}
   _hpMinTransform: {fileID: 1661796189037445135}
---- !u!82 &3308563562454393442
-AudioSource:
+--- !u!114 &6602215903296433612
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8547473181133355828}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 59b95503ca0aebc46bc178240ad60598, type: 3}
-  m_Resource: {fileID: 8300000, guid: 59b95503ca0aebc46bc178240ad60598, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.4
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806f32e273b811a42939eea2d8446d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pVariables: {fileID: 5959216799673556136}
+--- !u!114 &8889615420272368224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547473181133355828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1b16705d080744c8aa833e8adece4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pVariables: {fileID: 5959216799673556136}
+  _footArea: {x: 0.1, y: 0.1}
+--- !u!114 &4274321996052664225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547473181133355828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7824b9f974d944449319d48b87eb428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pVariables: {fileID: 5959216799673556136}
+  dashForce: 5
+  dashTimeCounter: 0
+  dashCounter: 0
 --- !u!1001 &2322776709501814361
 PrefabInstance:
   m_ObjectHideFlags: 0
