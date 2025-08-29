@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: ec4fb93f78d5b5242802248c4f50b695
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -254454105073150558
+    second: FROGGERS-ATK1-ANM2-Sheet_0
+  - first:
+      213: -2919378890069642955
+    second: FROGGERS-ATK1-ANM2-Sheet_1
+  - first:
+      213: 375641751578152463
+    second: FROGGERS-ATK1-ANM2-Sheet_2
+  - first:
+      213: 9124738151695987574
+    second: FROGGERS-ATK1-ANM2-Sheet_3
+  - first:
+      213: -2662441942960010965
+    second: FROGGERS-ATK1-ANM2-Sheet_4
+  - first:
+      213: 4518478083935177489
+    second: FROGGERS-ATK1-ANM2-Sheet_5
+  - first:
+      213: 9124253153828316179
+    second: FROGGERS-ATK1-ANM2-Sheet_6
+  - first:
+      213: 6654546219100405209
+    second: FROGGERS-ATK1-ANM2-Sheet_7
+  - first:
+      213: 6576065044047168917
+    second: FROGGERS-ATK1-ANM2-Sheet_8
+  - first:
+      213: -201212798442271682
+    second: FROGGERS-ATK1-ANM2-Sheet_9
+  - first:
+      213: 1672922471508374915
+    second: FROGGERS-ATK1-ANM2-Sheet_10
+  - first:
+      213: -635941852631215483
+    second: FROGGERS-ATK1-ANM2-Sheet_11
+  - first:
+      213: -1495338854618834833
+    second: FROGGERS-ATK1-ANM2-Sheet_12
+  - first:
+      213: -6572361641556839858
+    second: FROGGERS-ATK1-ANM2-Sheet_13
+  - first:
+      213: -4450392369669591654
+    second: FROGGERS-ATK1-ANM2-Sheet_14
+  - first:
+      213: 14817607561819884
+    second: FROGGERS-ATK1-ANM2-Sheet_15
+  - first:
+      213: -2255669342642305321
+    second: FROGGERS-ATK1-ANM2-Sheet_16
+  - first:
+      213: -2511995819083166663
+    second: FROGGERS-ATK1-ANM2-Sheet_17
+  - first:
+      213: 2232530320114909898
+    second: FROGGERS-ATK1-ANM2-Sheet_18
+  - first:
+      213: 7548516386889644815
+    second: FROGGERS-ATK1-ANM2-Sheet_19
+  - first:
+      213: -7864613992841582551
+    second: FROGGERS-ATK1-ANM2-Sheet_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 15
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5997fe65ff77cf0800000000000000
+      internalID: -254454105073150558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 15
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 531ff94fd584c77d0800000000000000
+      internalID: -2919378890069642955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 15
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e0f9dce2c863500800000000000000
+      internalID: 375641751578152463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 15
+        width: 39
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6733b48010591ae70800000000000000
+      internalID: 9124738151695987574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 15
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2984cab82b1d0bd0800000000000000
+      internalID: -2662441942960010965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 15
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11b085e90ebd4be30800000000000000
+      internalID: 4518478083935177489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 19
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 314acaaa6ebdf9e70800000000000000
+      internalID: 9124253153828316179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 15
+        width: 49
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ddf5ea6782b95c50800000000000000
+      internalID: 6654546219100405209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 15
+        width: 31
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5958b4ae050e24b50800000000000000
+      internalID: 6576065044047168917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 15
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3c0690a606253df0800000000000000
+      internalID: -201212798442271682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 15
+        width: 34
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3857603df1a673710800000000000000
+      internalID: 1672922471508374915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 15
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 582dc10214eac27f0800000000000000
+      internalID: -635941852631215483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 11
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f68da9ffb3d7f3be0800000000000000
+      internalID: -1495338854618834833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 19
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e42f99ba8e74ac4a0800000000000000
+      internalID: -6572361641556839858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 11
+        width: 42
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9d2cbe08b70d32c0800000000000000
+      internalID: -4450392369669591654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 11
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce6b42b1984a43000800000000000000
+      internalID: 14817607561819884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 15
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d601151fa042b0e0800000000000000
+      internalID: -2255669342642305321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 15
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c08469c19932dd0800000000000000
+      internalID: -2511995819083166663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 15
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac20db86f7a8bfe10800000000000000
+      internalID: 2232530320114909898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 15
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0bb5cdf8a7b1c860800000000000000
+      internalID: 7548516386889644815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-ATK1-ANM2-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 15
+        width: 41
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9286c15fd374bd290800000000000000
+      internalID: -7864613992841582551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FROGGERS-ATK1-ANM2-Sheet_0: -254454105073150558
+      FROGGERS-ATK1-ANM2-Sheet_1: -2919378890069642955
+      FROGGERS-ATK1-ANM2-Sheet_10: 1672922471508374915
+      FROGGERS-ATK1-ANM2-Sheet_11: -635941852631215483
+      FROGGERS-ATK1-ANM2-Sheet_12: -1495338854618834833
+      FROGGERS-ATK1-ANM2-Sheet_13: -6572361641556839858
+      FROGGERS-ATK1-ANM2-Sheet_14: -4450392369669591654
+      FROGGERS-ATK1-ANM2-Sheet_15: 14817607561819884
+      FROGGERS-ATK1-ANM2-Sheet_16: -2255669342642305321
+      FROGGERS-ATK1-ANM2-Sheet_17: -2511995819083166663
+      FROGGERS-ATK1-ANM2-Sheet_18: 2232530320114909898
+      FROGGERS-ATK1-ANM2-Sheet_19: 7548516386889644815
+      FROGGERS-ATK1-ANM2-Sheet_2: 375641751578152463
+      FROGGERS-ATK1-ANM2-Sheet_20: -7864613992841582551
+      FROGGERS-ATK1-ANM2-Sheet_3: 9124738151695987574
+      FROGGERS-ATK1-ANM2-Sheet_4: -2662441942960010965
+      FROGGERS-ATK1-ANM2-Sheet_5: 4518478083935177489
+      FROGGERS-ATK1-ANM2-Sheet_6: 9124253153828316179
+      FROGGERS-ATK1-ANM2-Sheet_7: 6654546219100405209
+      FROGGERS-ATK1-ANM2-Sheet_8: 6576065044047168917
+      FROGGERS-ATK1-ANM2-Sheet_9: -201212798442271682
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

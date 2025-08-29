@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scr_PlayerIdleState : Scr_PlayerBaseState
@@ -13,10 +14,7 @@ public class Scr_PlayerIdleState : Scr_PlayerBaseState
 
         if (player.pVariables._isJumping) { player.SwitchState(player.JumpState); }
 
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
-        {
-            if (player._canAttack) { player.SwitchState(player.AttackingState); }
-        }
+        if (player.pVariables.isAttacking) { player.SwitchState(player.AttackingState); }
 
         if (player.pVariables._isDashing) { player.SwitchState(player.DashState); }
     }

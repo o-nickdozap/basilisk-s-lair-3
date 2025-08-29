@@ -20,4 +20,7 @@ public class PlayerVariables : MonoBehaviour
 
     public int _dashCounterMax;
     public bool _isDashing;
+
+    public bool attackEnd;
+    public bool isAttacking;
 }

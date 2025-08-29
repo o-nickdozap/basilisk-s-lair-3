@@ -285,6 +285,8 @@ GameObject:
   - component: {fileID: 6602215903296433612}
   - component: {fileID: 8889615420272368224}
   - component: {fileID: 4274321996052664225}
+  - component: {fileID: 6055248581926690875}
+  - component: {fileID: 3337527692466879596}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -322,8 +324,8 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8547473181133355828}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -337,7 +339,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ed43269d7d8b431489a84910a8c5b6ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,7 +369,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!95 &3079941285027256419
 Animator:
@@ -415,7 +417,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!60 &5980710939229361621
@@ -497,6 +499,8 @@ MonoBehaviour:
     m_Bits: 8
   _dashCounterMax: 1
   _isDashing: 0
+  attackEnd: 0
+  isAttacking: 0
 --- !u!114 &7201171741590216856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,26 +521,10 @@ MonoBehaviour:
   _canDash: 1
   _canWall: 1
   _footPos: {fileID: 7106769544687357347}
-  _attackPos: {fileID: 7887816231479309706}
   _wallCheckPos: {fileID: 6722934447744015744}
   _lastFootPos: {fileID: 2189197629068518325}
   _hitBoxPivot: {fileID: 2237445997283649054}
   _lastFootCheckDistance: 0.04
-  attackEnd: 0
-  attackDirection: 0
-  swordDamage: 1
-  attackArea: {x: 0, y: 0}
-  walkAttackArea: {x: 0.35, y: 0.45}
-  idleAttackArea: {x: 0.5, y: 0.3}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  wallGravity: -10
-  wallCheckDistance: {x: 0.12, y: 0.2}
-  resetYVelocityTrigger: 0
-  walljumpForceX: 256
-  walljumpForceY: 128
-  wallDirection: 0
   _playerMaxLife: 10
   _playerLife: 10
   _hud: {fileID: 0}
@@ -580,7 +568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pVariables: {fileID: 5959216799673556136}
-  _footArea: {x: 0.1, y: 0.1}
+  _jumpCounter: 0
+  _footArea: {x: 0.1, y: 0.08}
 --- !u!114 &4274321996052664225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,8 +584,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pVariables: {fileID: 5959216799673556136}
   dashForce: 5
-  dashTimeCounter: 0
-  dashCounter: 0
+  _dashTimeCounter: 0
+  _dashCounter: 0
+--- !u!114 &6055248581926690875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547473181133355828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392e7aa40bc25b64b9eacab07c6d2b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pVariables: {fileID: 5959216799673556136}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _attackPos: {fileID: 7887816231479309706}
+--- !u!114 &3337527692466879596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547473181133355828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4560dfbf304a54c4cbcc3bd8234637c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pVariables: {fileID: 5959216799673556136}
 --- !u!1001 &2322776709501814361
 PrefabInstance:
   m_ObjectHideFlags: 0

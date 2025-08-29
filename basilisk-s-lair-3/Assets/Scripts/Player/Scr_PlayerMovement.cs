@@ -13,14 +13,18 @@ public class Scr_PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        pVariables.move = Input.GetAxisRaw("Horizontal");
-
+        MoveInput();
         PlayerDirection();
     }
 
     private void FixedUpdate()
     {
         if (!pVariables._isDashing) { Movement(); }
+    }
+
+    void MoveInput()
+    {
+        pVariables.move = Input.GetAxisRaw("Horizontal");
     }
 
     void Movement()

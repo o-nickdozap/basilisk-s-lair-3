@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: 2cdc5199039208d4491ec7799cd25c7b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7387073812618312507
+    second: FROGGERS-SOCO2-Sheet_0
+  - first:
+      213: -907384377852852189
+    second: FROGGERS-SOCO2-Sheet_1
+  - first:
+      213: 7394635118748193881
+    second: FROGGERS-SOCO2-Sheet_2
+  - first:
+      213: 5053721186803275571
+    second: FROGGERS-SOCO2-Sheet_3
+  - first:
+      213: -8770479595559131741
+    second: FROGGERS-SOCO2-Sheet_4
+  - first:
+      213: 5857436162274474998
+    second: FROGGERS-SOCO2-Sheet_5
+  - first:
+      213: 6626557707900244005
+    second: FROGGERS-SOCO2-Sheet_6
+  - first:
+      213: 3310920510129135933
+    second: FROGGERS-SOCO2-Sheet_7
+  - first:
+      213: 449295701774743864
+    second: FROGGERS-SOCO2-Sheet_8
+  - first:
+      213: 1732851756886474429
+    second: FROGGERS-SOCO2-Sheet_9
+  - first:
+      213: -2879994451966208729
+    second: FROGGERS-SOCO2-Sheet_10
+  - first:
+      213: 8161410620373207210
+    second: FROGGERS-SOCO2-Sheet_11
+  - first:
+      213: -2105695869538144237
+    second: FROGGERS-SOCO2-Sheet_12
+  - first:
+      213: -8833649720433645007
+    second: FROGGERS-SOCO2-Sheet_13
+  - first:
+      213: 7431865116617105886
+    second: FROGGERS-SOCO2-Sheet_14
+  - first:
+      213: 3435767111798805566
+    second: FROGGERS-SOCO2-Sheet_15
+  - first:
+      213: 5753711946099323589
+    second: FROGGERS-SOCO2-Sheet_16
+  - first:
+      213: -5648447507063200343
+    second: FROGGERS-SOCO2-Sheet_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 15
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c48b4d7187db7990800000000000000
+      internalID: -7387073812618312507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 15
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 328875347b25863f0800000000000000
+      internalID: -907384377852852189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 15
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9545d9846750f9660800000000000000
+      internalID: 7394635118748193881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 15
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3375645c4ac622640800000000000000
+      internalID: 5053721186803275571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 15
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a5e2ec964ff84680800000000000000
+      internalID: -8770479595559131741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 15
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fbb5e2d72bc94150800000000000000
+      internalID: 5857436162274474998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 15
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5205507502346fb50800000000000000
+      internalID: 6626557707900244005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 15
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d316dc579a0c2fd20800000000000000
+      internalID: 3310920510129135933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 15
+        width: 33
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839b46f6f083c3600800000000000000
+      internalID: 449295701774743864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 15
+        width: 37
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbe31a9ed735c0810800000000000000
+      internalID: 1732851756886474429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 15
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72555770e443808d0800000000000000
+      internalID: -2879994451966208729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 15
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa8027dd7b7234170800000000000000
+      internalID: 8161410620373207210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 15
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 310fb2b53c017c2e0800000000000000
+      internalID: -2105695869538144237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 15
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13ae257c162986580800000000000000
+      internalID: -8833649720433645007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 15
+        width: 43
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed16496a2f9432760800000000000000
+      internalID: 7431865116617105886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 15
+        width: 43
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e34dcb51cfb4eaf20800000000000000
+      internalID: 3435767111798805566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 15
+        width: 43
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2fb2fc78a49df40800000000000000
+      internalID: 5753711946099323589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FROGGERS-SOCO2-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 15
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5ae094beeac91b0800000000000000
+      internalID: -5648447507063200343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FROGGERS-SOCO2-Sheet_0: -7387073812618312507
+      FROGGERS-SOCO2-Sheet_1: -907384377852852189
+      FROGGERS-SOCO2-Sheet_10: -2879994451966208729
+      FROGGERS-SOCO2-Sheet_11: 8161410620373207210
+      FROGGERS-SOCO2-Sheet_12: -2105695869538144237
+      FROGGERS-SOCO2-Sheet_13: -8833649720433645007
+      FROGGERS-SOCO2-Sheet_14: 7431865116617105886
+      FROGGERS-SOCO2-Sheet_15: 3435767111798805566
+      FROGGERS-SOCO2-Sheet_16: 5753711946099323589
+      FROGGERS-SOCO2-Sheet_17: -5648447507063200343
+      FROGGERS-SOCO2-Sheet_2: 7394635118748193881
+      FROGGERS-SOCO2-Sheet_3: 5053721186803275571
+      FROGGERS-SOCO2-Sheet_4: -8770479595559131741
+      FROGGERS-SOCO2-Sheet_5: 5857436162274474998
+      FROGGERS-SOCO2-Sheet_6: 6626557707900244005
+      FROGGERS-SOCO2-Sheet_7: 3310920510129135933
+      FROGGERS-SOCO2-Sheet_8: 449295701774743864
+      FROGGERS-SOCO2-Sheet_9: 1732851756886474429
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

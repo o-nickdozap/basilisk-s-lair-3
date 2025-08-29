@@ -10,8 +10,8 @@ public class Scr_PlayerDashState : Scr_PlayerBaseState
     public override void UpdateState(Scr_PlayerStateManager player)
     {
         if (!player.pVariables._isDashing) {
-            if (player.IsOnFloor()) player.SwitchState(player.IdleState); 
-            if (!player.IsOnFloor()) player.SwitchState(player.FallState);
+            if (player.IsOnFloor) player.SwitchState(player.IdleState); 
+            if (!player.IsOnFloor) player.SwitchState(player.FallState);
         }
     }
 

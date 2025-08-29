@@ -10,9 +10,10 @@ public class Scr_PlayerAttacking : Scr_PlayerBaseState
 
     public override void UpdateState(Scr_PlayerStateManager player)
     {
-        if (player.attackEnd) { 
+        if (player.pVariables.attackEnd)
+        { 
             player.SwitchState(player.IdleState);
-            player.attackEnd = false;
+            player.pVariables.attackEnd = false;
         }
     }
 

@@ -20,7 +20,9 @@ public class Scr_Camera : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (playerObject != null) { TargetCamera(); }
+        if (playerObject == null) { playerObject = GameObject.FindWithTag("Player"); }
+        else { TargetCamera(); }
+
     }
 
     void TargetCamera()

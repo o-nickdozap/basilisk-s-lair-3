@@ -2,12 +2,13 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Molho
   - Slope
   - Exit
   - Guarda
+  - SceneManager
   layers:
   - Default
   - TransparentFX
@@ -54,3 +55,5 @@ TagManager:
   - name: G0
     uniqueID: 964313405
     locked: 0
+  m_RenderingLayers:
+  - Default

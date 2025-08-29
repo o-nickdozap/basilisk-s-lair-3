@@ -5,9 +5,9 @@ public class Scr_PlayerDash : MonoBehaviour
     public PlayerVariables pVariables;
 
     [SerializeField] float dashForce;
-    private float dashTime = .15f;
-    public float dashTimeCounter;
-    public float dashCounter;
+    private float _dashTime = .15f;
+    public float _dashTimeCounter;
+    public float _dashCounter;
 
     private void Update()
     {
@@ -21,31 +21,30 @@ public class Scr_PlayerDash : MonoBehaviour
 
     void DashInput()
     {
-        if (pVariables.Manager.IsOnFloor())
+        if (pVariables.Manager.IsOnFloor && Input.GetAxisRaw("Dash") == 0)
         {
-            dashCounter = pVariables._dashCounterMax;
+            _dashCounter = pVariables._dashCounterMax;
         }
 
         if (Input.GetKeyDown(KeyCode.C) || Input.GetAxisRaw("Dash") > 0)
         {
-            if (dashCounter > 0 && !pVariables._isDashing)
+            if (!pVariables._isDashing && _dashCounter > 0)
             {
-                dashTimeCounter = dashTime;
-
+                _dashTimeCounter = _dashTime;
                 pVariables._isDashing = true;
-                dashCounter--;
+                _dashCounter--;
             }
         }
 
         if (pVariables._isDashing)
         {
-            dashTimeCounter -= Time.deltaTime;
+            _dashTimeCounter -= Time.deltaTime;
         }
 
-        if (dashTimeCounter <= 0 && Input.GetAxisRaw("Dash") == 0)
+        if (_dashTimeCounter <= 0)
         {
             pVariables._isDashing = false;
-            dashTimeCounter = 0;
+            _dashTimeCounter = 0;
         }
     }
 
