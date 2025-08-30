@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Paravoid_logo_white_0: 2418605585922577314
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
