@@ -23,4 +23,5 @@ public class PlayerVariables : MonoBehaviour
 
     public bool attackEnd;
     public bool isAttacking;
+    public int _attackInputCounter;
 }

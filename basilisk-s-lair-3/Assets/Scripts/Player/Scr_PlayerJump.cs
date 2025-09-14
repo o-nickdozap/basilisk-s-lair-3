@@ -79,8 +79,6 @@ public class Scr_PlayerJump : MonoBehaviour
     private void Update()
     {
         JumpInput();
-
-        Debug.Log(_jumpCounter);
     }
 
     private void FixedUpdate()

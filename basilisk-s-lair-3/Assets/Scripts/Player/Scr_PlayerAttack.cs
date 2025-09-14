@@ -4,21 +4,26 @@ public class Scr_PlayerAttack : MonoBehaviour
 {
     public PlayerVariables pVariables;
 
-    
-    private int attackDirection;
     private float swordDamage = 1;
     bool isDamaging = false;
-    
-    private Vector2 attackArea;
-    private Vector2 idleAttackArea = new Vector2(.5f, .3f);
-    private Vector2 walkAttackArea = new Vector2(.35f, .45f);
+
+    private float _attackRadius;
+    [SerializeField] float _swordAttack1Radius;
+    [SerializeField] Vector2 walkAttackArea = new Vector2(.35f, .45f);
     [SerializeField] LayerMask enemyLayer;
 
     [SerializeField] Transform _attackPos;
 
+    private int _swordComboCounter;
+    private bool _swordAttackForceTrigger;
+
     private void Start()
     {
-        attackArea = idleAttackArea;
+        pVariables.isAttacking = false;
+
+        _swordComboCounter = 0;
+
+        _attackRadius = _swordAttack1Radius;
     }
 
     private void Update()
@@ -30,28 +35,43 @@ public class Scr_PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
         {
-            if (!pVariables.isAttacking)
-            {
-                pVariables.isAttacking = true;
-                attackDirection = pVariables._playerDirection;
+            pVariables._attackInputCounter++;
 
-                if (pVariables.rig.linearVelocity == Vector2.zero) { attackArea = idleAttackArea; }
+            pVariables.isAttacking = true;
 
-                else { attackArea = walkAttackArea; }
+            _attackRadius = _swordAttack1Radius;
+        }
 
-                isDamaging = true;
-            }
+        if (pVariables._attackInputCounter > 3)
+        {
+            pVariables._attackInputCounter = 3;
         }
 
         if (isDamaging)
         {
             AttackDamage();
         }
+
+        if (pVariables.isAttacking && _swordComboCounter >= 3)
+        {
+            pVariables.isAttacking = false;
+            isDamaging = false;
+            pVariables.attackEnd = true;
+            _swordAttackForceTrigger = false;
+
+            _swordComboCounter = 0;
+            pVariables._attackInputCounter = 0;
+        }
+    }
+
+    void Damage()
+    {
+        isDamaging = true;
     }
 
     void AttackDamage()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(_attackPos.position, attackArea, 0, enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPos.position, _attackRadius, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.CompareTag("Molho")) { enemy.GetComponent<Scr_MolhoStateManager>().Damage(swordDamage); }
@@ -61,15 +81,56 @@ public class Scr_PlayerAttack : MonoBehaviour
 
     void AttackEnd()
     {
-        pVariables.isAttacking = false;
-        isDamaging = false;
-        pVariables.attackEnd = true;
+        pVariables._attackInputCounter--;
+
+        if (pVariables._attackInputCounter == 0)
+        {
+            pVariables.isAttacking = false;
+            isDamaging = false;
+            pVariables.attackEnd = true;
+            _swordAttackForceTrigger = false;
+
+            _swordComboCounter = 0;
+        }
+
+        else
+        {
+            _swordComboCounter++;
+        }
+    }
+
+    void SwordAddForce()
+    {
+        _swordAttackForceTrigger = true;
+    }
+
+    void SwordEndForce()
+    {
+        _swordAttackForceTrigger = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_swordAttackForceTrigger)
+        {
+            if (_swordComboCounter == 2)
+            {
+                pVariables.rig.AddForce(new Vector2(pVariables._playerDirection * 75, 0), ForceMode2D.Force);
+            }
+            else
+            {
+                pVariables.rig.AddForce(new Vector2(pVariables._playerDirection * 33, 0), ForceMode2D.Force);
+            }
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireCube(_attackPos.position, attackArea);
+        if (isDamaging)
+        {
+            Gizmos.DrawWireSphere(_attackPos.position, _attackRadius);
+        }
     }
 }

@@ -202,10 +202,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 15
-        width: 21
-        height: 25
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,10 +224,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_1
       rect:
         serializedVersion: 2
-        x: 79
-        y: 15
-        width: 26
-        height: 27
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,10 +246,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 15
-        width: 24
-        height: 23
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,10 +268,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_3
       rect:
         serializedVersion: 2
-        x: 212
-        y: 15
-        width: 39
-        height: 26
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,10 +290,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_4
       rect:
         serializedVersion: 2
-        x: 281
-        y: 15
-        width: 33
-        height: 30
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,10 +312,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_5
       rect:
         serializedVersion: 2
-        x: 342
-        y: 15
-        width: 24
-        height: 27
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -334,10 +334,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_6
       rect:
         serializedVersion: 2
-        x: 369
-        y: 19
-        width: 13
-        height: 18
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,10 +356,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_7
       rect:
         serializedVersion: 2
-        x: 400
-        y: 15
-        width: 49
-        height: 26
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,10 +378,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_8
       rect:
         serializedVersion: 2
-        x: 464
-        y: 15
-        width: 31
-        height: 26
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -400,10 +400,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_9
       rect:
         serializedVersion: 2
-        x: 524
-        y: 15
-        width: 35
-        height: 25
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -422,10 +422,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_10
       rect:
         serializedVersion: 2
-        x: 587
-        y: 15
-        width: 34
-        height: 24
+        x: 640
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -444,10 +444,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_11
       rect:
         serializedVersion: 2
-        x: 666
-        y: 15
-        width: 32
-        height: 25
+        x: 704
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -466,10 +466,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_12
       rect:
         serializedVersion: 2
-        x: 726
-        y: 11
-        width: 23
-        height: 29
+        x: 768
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -488,10 +488,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_13
       rect:
         serializedVersion: 2
-        x: 753
-        y: 19
-        width: 13
-        height: 18
+        x: 832
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -510,10 +510,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_14
       rect:
         serializedVersion: 2
-        x: 791
-        y: 11
-        width: 42
-        height: 29
+        x: 896
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -532,10 +532,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_15
       rect:
         serializedVersion: 2
-        x: 855
-        y: 11
-        width: 22
-        height: 29
+        x: 960
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -554,10 +554,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_16
       rect:
         serializedVersion: 2
-        x: 915
-        y: 15
-        width: 28
-        height: 24
+        x: 1024
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -576,10 +576,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_17
       rect:
         serializedVersion: 2
-        x: 980
-        y: 15
-        width: 28
-        height: 23
+        x: 1088
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -598,10 +598,10 @@ TextureImporter:
       name: FROGGERS-ATK1-ANM2-Sheet_18
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 15
-        width: 35
-        height: 24
+        x: 1152
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -616,55 +616,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: FROGGERS-ATK1-ANM2-Sheet_19
-      rect:
-        serializedVersion: 2
-        x: 1112
-        y: 15
-        width: 40
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f0bb5cdf8a7b1c860800000000000000
-      internalID: 7548516386889644815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FROGGERS-ATK1-ANM2-Sheet_20
-      rect:
-        serializedVersion: 2
-        x: 1175
-        y: 15
-        width: 41
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9286c15fd374bd290800000000000000
-      internalID: -7864613992841582551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f1356bb7bdb2b7642b1eb6713dba95ce
     internalID: 0
     vertices: []
     indices: 
@@ -685,9 +641,7 @@ TextureImporter:
       FROGGERS-ATK1-ANM2-Sheet_16: -2255669342642305321
       FROGGERS-ATK1-ANM2-Sheet_17: -2511995819083166663
       FROGGERS-ATK1-ANM2-Sheet_18: 2232530320114909898
-      FROGGERS-ATK1-ANM2-Sheet_19: 7548516386889644815
       FROGGERS-ATK1-ANM2-Sheet_2: 375641751578152463
-      FROGGERS-ATK1-ANM2-Sheet_20: -7864613992841582551
       FROGGERS-ATK1-ANM2-Sheet_3: 9124738151695987574
       FROGGERS-ATK1-ANM2-Sheet_4: -2662441942960010965
       FROGGERS-ATK1-ANM2-Sheet_5: 4518478083935177489
