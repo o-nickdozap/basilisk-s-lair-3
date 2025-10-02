@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scr_PlayerAttack : MonoBehaviour
@@ -5,7 +6,7 @@ public class Scr_PlayerAttack : MonoBehaviour
     public PlayerVariables pVariables;
 
     private float swordDamage = 1;
-    bool isDamaging = false;
+    private bool _isDamaging = false;
 
     private float _attackRadius;
     [SerializeField] float _swordAttack1Radius;
@@ -19,7 +20,7 @@ public class Scr_PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        pVariables.isAttacking = false;
+        pVariables._isAttacking = false;
 
         _swordComboCounter = 0;
 
@@ -28,45 +29,47 @@ public class Scr_PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        Attack();
+        AttackInput();
     }
 
-    void Attack()
+    void AttackInput()
     {
         if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("Attack"))
         {
+            pVariables._isAttacking = true;
+
+            if (pVariables.Manager.IsOnFloor)
+            {
+                pVariables._canWalk = false;
+            }
+
             pVariables._attackInputCounter++;
 
-            pVariables.isAttacking = true;
-
             _attackRadius = _swordAttack1Radius;
+
+                if (pVariables._attackInputCounter > 3)
+                {
+                    pVariables._attackInputCounter = 3;
+                }
         }
 
-        if (pVariables._attackInputCounter > 3)
+        if (pVariables._isAttacking && _swordComboCounter >= 3)
         {
-            pVariables._attackInputCounter = 3;
-        }
-
-        if (isDamaging)
-        {
-            AttackDamage();
-        }
-
-        if (pVariables.isAttacking && _swordComboCounter >= 3)
-        {
-            pVariables.isAttacking = false;
-            isDamaging = false;
-            pVariables.attackEnd = true;
             _swordAttackForceTrigger = false;
+            pVariables._isAttacking = false;
+            pVariables._canWalk = true;
 
-            _swordComboCounter = 0;
+            pVariables.attackEnd = true;
+            _isDamaging = false;
+
             pVariables._attackInputCounter = 0;
+            _swordComboCounter = 0;
         }
     }
 
     void Damage()
     {
-        isDamaging = true;
+        _isDamaging = true;
     }
 
     void AttackDamage()
@@ -75,7 +78,7 @@ public class Scr_PlayerAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.CompareTag("Molho")) { enemy.GetComponent<Scr_MolhoStateManager>().Damage(swordDamage); }
-            isDamaging = false;
+            _isDamaging = false;
         }
     }
 
@@ -85,14 +88,15 @@ public class Scr_PlayerAttack : MonoBehaviour
 
         if (pVariables._attackInputCounter == 0)
         {
-            pVariables.isAttacking = false;
-            isDamaging = false;
+            pVariables._isAttacking = false;
             pVariables.attackEnd = true;
+            pVariables._canWalk = true;
+
             _swordAttackForceTrigger = false;
+            _isDamaging = false;
 
             _swordComboCounter = 0;
         }
-
         else
         {
             _swordComboCounter++;
@@ -101,7 +105,10 @@ public class Scr_PlayerAttack : MonoBehaviour
 
     void SwordAddForce()
     {
-        _swordAttackForceTrigger = true;
+        if (pVariables.Manager.IsOnFloor)
+        {
+            _swordAttackForceTrigger = true;
+        }
     }
 
     void SwordEndForce()
@@ -128,7 +135,7 @@ public class Scr_PlayerAttack : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        if (isDamaging)
+        if (_isDamaging)
         {
             Gizmos.DrawWireSphere(_attackPos.position, _attackRadius);
         }

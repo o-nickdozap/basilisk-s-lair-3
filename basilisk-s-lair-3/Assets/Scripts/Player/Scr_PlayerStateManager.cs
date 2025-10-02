@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Scr_PlayerStateManager : MonoBehaviour
 {
-    private Scr_PlayerBaseState currentState;
+    private Scr_PlayerBaseState _currentState;
 
     public PlayerVariables pVariables;
     public Scr_PlayerJump _playerJump;
@@ -13,6 +13,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public static Scr_PlayerStateManager _instance;
 
     public Scr_PlayerIdleState IdleState = new Scr_PlayerIdleState();
+    public Scr_PlayerIdle2State Idle2State = new Scr_PlayerIdle2State();
     public Scr_PlayerWalkState WalkState = new Scr_PlayerWalkState();
     public Scr_PlayerJumpState JumpState = new Scr_PlayerJumpState();
     public Scr_PlayerFallState FallState = new Scr_PlayerFallState();
@@ -91,18 +92,18 @@ public class Scr_PlayerStateManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoad;
 
-        currentState = IdleState;
+        _currentState = IdleState;
 
         _hud = GameObject.Find("Hud");
         _hpTransform = GameObject.Find("HealthBar").GetComponent<RectTransform>();
         _hpMinTransform = GameObject.Find("Anchor").transform;
 
-        currentState.EnterState(this);
+        _currentState.EnterState(this);
     }
 
     void Update()
     {
-        currentState.UpdateState(this);
+        _currentState.UpdateState(this);
 
         pVariables.gameTime += Time.deltaTime;
 
@@ -139,6 +140,12 @@ public class Scr_PlayerStateManager : MonoBehaviour
         {
             Application.targetFrameRate = 60;
         }
+
+        if (!pVariables._afterFirstFrame)
+        {
+            pVariables._afterFirstFrame = true;
+            Debug.Log(pVariables._afterFirstFrame);
+        }
     }
 
     public void Knockback()
@@ -171,9 +178,10 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     public void SwitchState(Scr_PlayerBaseState state)
     {
-        currentState = state;
+        _currentState = state;
         state.EnterState(this);
-        //Debug.Log(currentState);
+
+        //Debug.Log(_currentState);
     }
 
     public void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode)

@@ -1,16 +1,16 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Scr_PlayerIdleState : Scr_PlayerBaseState
+public class Scr_PlayerIdle2State : Scr_PlayerBaseState
 {
-    float _secondIdleTimer = 3f;
-    float _secondIdleTimerCounter;
+    float _firstdIdleTimer = 2f;
+    float _firstIdleTimerCounter;
 
     public override void EnterState(Scr_PlayerStateManager player)
     {
-        player.pVariables.anim.Play("Anim_player_idle");
+        player.pVariables.anim.Play("Anim_player_idle2");
 
-        _secondIdleTimerCounter = _secondIdleTimer;
+        _firstIdleTimerCounter = _firstdIdleTimer;
     }
 
     public override void UpdateState(Scr_PlayerStateManager player)
@@ -24,15 +24,15 @@ public class Scr_PlayerIdleState : Scr_PlayerBaseState
         if (player.pVariables._isDashing) { player.SwitchState(player.DashState); }
 
 
-        if (_secondIdleTimerCounter <= 0)
+        if (_firstIdleTimerCounter <= 0)
         {
-            player.SwitchState(player.Idle2State);
+            player.SwitchState(player.IdleState);
 
-            _secondIdleTimerCounter = _secondIdleTimer;
+            _firstIdleTimerCounter = _firstdIdleTimer;
         }
         else
         {
-            _secondIdleTimerCounter -= Time.deltaTime;
+            _firstIdleTimerCounter -= Time.deltaTime;
         }
     }
 

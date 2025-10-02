@@ -3,6 +3,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Scr_Camera : MonoBehaviour
 {
+    public static Scr_Camera _instance;
+
     GameObject playerObject;
     public float damping;
     public float xMin, xMax, yMin, yMax;

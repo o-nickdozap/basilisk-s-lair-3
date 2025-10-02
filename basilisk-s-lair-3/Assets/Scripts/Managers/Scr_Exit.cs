@@ -1,6 +1,5 @@
-using System.Collections;
+//using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Scr_Exit : MonoBehaviour
 {
@@ -10,9 +9,6 @@ public class Scr_Exit : MonoBehaviour
     [SerializeField] string _targetRoomName;
     public int _currentRoomNumber;
     public int _targetRoomNumber;
-
-    [SerializeField] Animator _transitionAnim;
-    [SerializeField] float _transitionTime;
 
     private void Awake()
     {
@@ -28,17 +24,9 @@ public class Scr_Exit : MonoBehaviour
 
     void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel());
-    }
-
-    IEnumerator LoadLevel()
-    {
-        _transitionAnim.SetTrigger("Start");
-
-        yield return new WaitForSeconds(_transitionTime);
-
-        SceneManager.LoadScene(_targetRoomName, LoadSceneMode.Single);
         _SceneManager.GetComponent<Scr_SceneManager>()._targetRoomNumber = _targetRoomNumber;
-    }
+        _SceneManager.GetComponent<Scr_SceneManager>()._targetRoomName = _targetRoomName;
 
+        _SceneManager.GetComponent<Scr_SceneManager>().StartCoroutine("LoadLevel");
+    }
 }

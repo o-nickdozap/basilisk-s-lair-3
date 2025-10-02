@@ -15,7 +15,7 @@ public class Scr_PlayerJumpState : Scr_PlayerBaseState
 
         if (player.pVariables.rig.linearVelocity.y < 0) { player.SwitchState(player.FallState); }
 
-        if (player.pVariables.isAttacking) { player.SwitchState(player.AttackingState); }
+        if (player.pVariables._isAttacking) { player.SwitchState(player.AttackingState); }
 
         if (player.pVariables._isDashing) { player.SwitchState(player.DashState); }
 

@@ -6,12 +6,15 @@ public class PlayerVariables : MonoBehaviour
 
     public Scr_PlayerStateManager Manager;
 
+    public bool _afterFirstFrame = false;
+
     public Rigidbody2D rig;
     public Animator anim;
     public SpriteRenderer spr;
 
-    public float move;
+    public float _move;
     public int _playerDirection;
+    public bool _canWalk;
 
     public int jumpCounterMax;
     public bool _isJumping;
@@ -22,6 +25,6 @@ public class PlayerVariables : MonoBehaviour
     public bool _isDashing;
 
     public bool attackEnd;
-    public bool isAttacking;
+    public bool _isAttacking;
     public int _attackInputCounter;
 }

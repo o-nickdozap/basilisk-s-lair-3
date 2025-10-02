@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scr_PlayerDash : MonoBehaviour
@@ -53,7 +54,7 @@ public class Scr_PlayerDash : MonoBehaviour
         if (pVariables._isDashing)
         {
             Physics2D.gravity = new Vector2(0, 0);
-            pVariables.rig.linearVelocity = new Vector2((dashForce * pVariables._playerDirection), 0);
+            pVariables.rig.linearVelocity = new Vector2(dashForce * pVariables._playerDirection, 0);
         }
     }
 }

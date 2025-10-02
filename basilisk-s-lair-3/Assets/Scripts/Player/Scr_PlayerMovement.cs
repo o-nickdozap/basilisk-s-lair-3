@@ -4,38 +4,51 @@ public class Scr_PlayerMovement : MonoBehaviour
 {
     public PlayerVariables pVariables;
 
-    private readonly float speed = 1.5f;
+    private readonly float _playerSpeed = 1.5f;
 
     private void Start()
     {
         pVariables._playerDirection = 1;
-    }
-
-    private void Update()
-    {
-        MoveInput();
-        PlayerDirection();
-    }
-
-    private void FixedUpdate()
-    {
-        if (!pVariables._isDashing) { Movement(); }
+        pVariables._canWalk = true;
     }
 
     void MoveInput()
     {
-        pVariables.move = Input.GetAxisRaw("Horizontal");
+        pVariables._move = Input.GetAxisRaw("Horizontal");
+
+        //Debug.Log("Right:" + Input.GetKey(KeyCode.RightArrow) + " " + "Left:" + Input.GetKey(KeyCode.LeftArrow));
     }
 
     void Movement()
     {
-        pVariables.rig.linearVelocity = new Vector2(pVariables.move * speed, pVariables.rig.linearVelocity.y);
+        pVariables.rig.linearVelocity = new Vector2(pVariables._move * _playerSpeed, pVariables.rig.linearVelocity.y);
     }
 
     void PlayerDirection()
     {
-        pVariables._playerDirection = (pVariables.move != 0) ? (int)Mathf.Sign(pVariables.move) : pVariables._playerDirection;
+        pVariables._playerDirection = (pVariables._move != 0) ? (int)Mathf.Sign(pVariables._move) : pVariables._playerDirection;
 
         gameObject.transform.localScale = new Vector3(pVariables._playerDirection, 1, 1);
+    }
+
+    private void Update()
+    {
+        if (pVariables._canWalk)
+        {
+            if (pVariables._afterFirstFrame) { MoveInput(); }
+            PlayerDirection();
+        }
+        else
+        {
+            pVariables._move = 0;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!pVariables._isDashing)
+        {
+            Movement();
+        }
     }
 }

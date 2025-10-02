@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 473977574419505982}
   - component: {fileID: 7024745246930482513}
   - component: {fileID: 4696477103040608578}
+  - component: {fileID: 4519041819461506301}
   m_Layer: 0
   m_Name: SceneTransintion
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4519041819461506301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101607873007024841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2722dae58a79b51468245f2d75dc65e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scr_SceneTransition
 --- !u!1 &5207243469548663100
 GameObject:
   m_ObjectHideFlags: 0

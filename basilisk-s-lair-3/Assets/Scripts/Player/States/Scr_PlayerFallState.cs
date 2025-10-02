@@ -13,7 +13,7 @@ public class Scr_PlayerFallState : Scr_PlayerBaseState
 
         if (player.pVariables._isJumping) { player.SwitchState(player.DoubleJumpState); }
 
-        if (player.pVariables.isAttacking) { player.SwitchState(player.AttackingState); }
+        if (player.pVariables._isAttacking) { player.SwitchState(player.AttackingState); }
 
         if (player.pVariables._isDashing) { player.SwitchState(player.DashState); }
 
