@@ -1445,7 +1445,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 582012866}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &501002514
@@ -1477,7 +1478,7 @@ GameObject:
   - component: {fileID: 582012867}
   m_Layer: 0
   m_Name: Force Camera Ratios
-  m_TagString: Untagged
+  m_TagString: CameraRatio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1491,11 +1492,11 @@ Transform:
   m_GameObject: {fileID: 582012865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.58683836, y: 0.23394978, z: 0.38089806}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1493241940}
+  m_Father: {fileID: 501002513}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &582012867
 MonoBehaviour:
@@ -1513,10 +1514,13 @@ MonoBehaviour:
   forceRatioOnAwake: 1
   listenForWindowChanges: 1
   createCameraForLetterBoxRendering: 1
-  findCamerasAutomatically: 1
+  findCamerasAutomatically: 0
   letterBoxCameraColor: {r: 0, g: 0, b: 0, a: 1}
-  cameras: []
-  letterBoxCamera: {fileID: 0}
+  cameras:
+  - camera: {fileID: 501002512}
+    anchor: 0
+    vectorAnchor: {x: 0.5, y: 0.5}
+  letterBoxCamera: {fileID: 501002512}
 --- !u!1001 &593992408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4732,6 +4736,7 @@ MonoBehaviour:
   _targetRoomName: 
   _transitionAnim: {fileID: 1100310788}
   _transitionTime: 1
+  _cameraRatio: {fileID: 0}
 --- !u!4 &1493241940
 Transform:
   m_ObjectHideFlags: 0
@@ -4744,8 +4749,7 @@ Transform:
   m_LocalPosition: {x: -0.58683836, y: -0.23394978, z: -0.38089806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 582012866}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1528668921

@@ -9,6 +9,7 @@ TagManager:
   - Exit
   - Guarda
   - SceneManager
+  - CameraRatio
   layers:
   - Default
   - TransparentFX

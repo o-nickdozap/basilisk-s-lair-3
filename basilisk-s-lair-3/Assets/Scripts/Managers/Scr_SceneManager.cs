@@ -1,7 +1,9 @@
+using AutoLetterbox;
+using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class Scr_SceneManager : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class Scr_SceneManager : MonoBehaviour
     [SerializeField] float _transitionTime;
 
     AsyncOperation asyncOperation;
+
+    [SerializeField] GameObject _cameraRatio;
 
     void Awake()
     {
@@ -35,6 +39,14 @@ public class Scr_SceneManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    private void Update()
+    {
+        if (_cameraRatio == null)
+        {
+            _cameraRatio = GameObject.FindGameObjectWithTag("CameraRatio");
+        }
+    }
+
     IEnumerator LoadLevel()
     {
         _transitionAnim.SetTrigger("Start");
@@ -49,6 +61,11 @@ public class Scr_SceneManager : MonoBehaviour
         yield return asyncOperation;
 
         SceneManager.UnloadSceneAsync(_currentScene);
+
+        if (_cameraRatio != null)
+        {
+            _cameraRatio.GetComponent<ForceCameraRatio>().FindAllCamerasInScene();
+        }
 
         _transitionAnim.SetTrigger("End");
     }

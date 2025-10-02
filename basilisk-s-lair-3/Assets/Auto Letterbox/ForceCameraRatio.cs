@@ -202,6 +202,12 @@ namespace AutoLetterbox
                     letterBoxCamera.backgroundColor = letterBoxCameraColor;
                 }
             }
+
+            if (cameras == null || cameras.Count == 0)
+            {
+                //FindAllCamerasInScene();
+                cameras = new List<CameraRatio>();
+            }
         }
 
         /// <summary>
@@ -238,7 +244,7 @@ namespace AutoLetterbox
         /// <summary>
         /// Populates the tracked Camera Array with every Camera currently in the scene
         /// </summary>
-        public void FindAllCamerasInScene () {
+        public void FindAllCamerasInScene() {
             Camera[] allCameras = FindObjectsByType<Camera>(FindObjectsSortMode.None);
             cameras = new List<CameraRatio>();
 
