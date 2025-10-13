@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 233343943931449093}
   - component: {fileID: 6504643905793374544}
   - component: {fileID: 4064401368702302828}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Exit
   m_TagString: Exit
   m_Icon: {fileID: 0}
@@ -55,6 +55,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -76,6 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -120,7 +123,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -152,8 +155,6 @@ MonoBehaviour:
   _targetRoomName: Sala 1
   _currentRoomNumber: 1
   _targetRoomNumber: 1
-  _transitionAnim: {fileID: 0}
-  _transitionTime: 0.5
 --- !u!1 &6728713260532315471
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7318375467057013458}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Start scene position
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}

@@ -1,22 +1,25 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scr_PlayerAttack : MonoBehaviour
 {
     public PlayerVariables pVariables;
 
-    private float swordDamage = 1;
+    private int _swordDamage = 1;
     private bool _isDamaging = false;
 
     private float _attackRadius;
     [SerializeField] float _swordAttack1Radius;
-    [SerializeField] Vector2 walkAttackArea = new Vector2(.35f, .45f);
+    //[SerializeField] Vector2 walkAttackArea = new Vector2(.35f, .45f);
     [SerializeField] LayerMask enemyLayer;
 
     [SerializeField] Transform _attackPos;
 
     private int _swordComboCounter;
     private bool _swordAttackForceTrigger;
+
+    private int _airAttackDirection;
+
+    [SerializeField] AudioSource _swordHitSound;
 
     private void Start()
     {
@@ -30,6 +33,11 @@ public class Scr_PlayerAttack : MonoBehaviour
     private void Update()
     {
         AttackInput();
+
+        if (_isDamaging)
+        {
+            AttackDamage();
+        }
     }
 
     void AttackInput()
@@ -42,65 +50,83 @@ public class Scr_PlayerAttack : MonoBehaviour
             {
                 pVariables._canWalk = false;
             }
+            else
+            {
+                _airAttackDirection = pVariables._playerDirection;
+            }
 
             pVariables._attackInputCounter++;
 
             _attackRadius = _swordAttack1Radius;
 
-                if (pVariables._attackInputCounter > 3)
-                {
-                    pVariables._attackInputCounter = 3;
-                }
+            if (pVariables._attackInputCounter > 3)
+            {
+                pVariables._attackInputCounter = 3;
+            }
         }
 
         if (pVariables._isAttacking && _swordComboCounter >= 3)
         {
-            _swordAttackForceTrigger = false;
-            pVariables._isAttacking = false;
-            pVariables._canWalk = true;
+            AttackEnd();
+        }
 
-            pVariables.attackEnd = true;
-            _isDamaging = false;
+        if (pVariables._isAttacking && !pVariables.Manager.IsOnFloor)
+        {
+            pVariables._playerDirection = _airAttackDirection;
+            pVariables._canChangeDirection = false;
+        }
 
-            pVariables._attackInputCounter = 0;
-            _swordComboCounter = 0;
+        if (pVariables.Manager.IsOnFloor && !pVariables._isAttacking)
+        {
+            pVariables._canChangeDirection = true;
         }
     }
 
     void Damage()
     {
         _isDamaging = true;
+
+        _swordHitSound.Play();
     }
 
     void AttackDamage()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPos.position, _attackRadius, enemyLayer);
+        
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.CompareTag("Molho")) { enemy.GetComponent<Scr_MolhoStateManager>().Damage(swordDamage); }
+            enemy.GetComponent<Scr_TakingDamage>().Damage(_swordDamage);
+
             _isDamaging = false;
         }
     }
 
-    void AttackEnd()
+    void AttackComboCounter()
     {
         pVariables._attackInputCounter--;
 
         if (pVariables._attackInputCounter == 0)
         {
-            pVariables._isAttacking = false;
-            pVariables.attackEnd = true;
-            pVariables._canWalk = true;
-
-            _swordAttackForceTrigger = false;
-            _isDamaging = false;
-
-            _swordComboCounter = 0;
+            AttackEnd();
         }
         else
         {
             _swordComboCounter++;
         }
+    }
+
+    void AttackEnd()
+    {
+        pVariables._isAttacking = false;
+        pVariables.attackEnd = true;
+        pVariables._canWalk = true;
+        pVariables._canChangeDirection = true;
+
+        _swordAttackForceTrigger = false;
+        _isDamaging = false;
+
+        pVariables._attackInputCounter = 0;
+        _swordComboCounter = 0;
     }
 
     void SwordAddForce()

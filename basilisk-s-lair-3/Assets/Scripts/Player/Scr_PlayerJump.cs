@@ -44,7 +44,15 @@ public class Scr_PlayerJump : MonoBehaviour
                 pVariables._isJumping = true;
 
                 jumpTimecounter = jumpTime;
-                _jumpCounter--;
+
+                if (pVariables.Manager.IsOnFloor || pVariables.Manager.IsOnWall)
+                {
+                    _jumpCounter--;
+                }
+                else
+                {
+                    _jumpCounter -= 2;
+                }
             }
         }
 

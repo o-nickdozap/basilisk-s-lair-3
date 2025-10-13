@@ -14,7 +14,8 @@ public class PlayerVariables : MonoBehaviour
 
     public float _move;
     public int _playerDirection;
-    public bool _canWalk;
+    public bool _canWalk = true;
+    public bool _canChangeDirection = true;
 
     public int jumpCounterMax;
     public bool _isJumping;

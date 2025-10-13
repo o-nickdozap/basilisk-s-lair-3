@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Scr_PlayerIdle2State : Scr_PlayerBaseState
 {
-    float _firstdIdleTimer = 2f;
+    float _firstdIdleTimer = 1f;
     float _firstIdleTimerCounter;
 
     public override void EnterState(Scr_PlayerStateManager player)

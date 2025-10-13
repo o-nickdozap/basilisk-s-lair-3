@@ -9,7 +9,7 @@ public class Scr_PlayerDoubleJumpState : Scr_PlayerBaseState
 
     public override void UpdateState(Scr_PlayerStateManager player)
     {
-        if (player.pVariables.rig.linearVelocity.y <= 0) { player.SwitchState(player.FallState); }
+        if (player.pVariables.rig.linearVelocityY < 0 && !player.pVariables._isJumping) { player.SwitchState(player.FallState); }
 
         if (player.pVariables._isAttacking) { player.SwitchState(player.AttackingState); }
 

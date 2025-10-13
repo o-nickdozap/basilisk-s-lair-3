@@ -15,10 +15,17 @@ public class Scr_Exit : MonoBehaviour
         _SceneManager = GameObject.FindWithTag("SceneManager");
     }
 
-    void OnCollisionEnter2D(Collision2D _col)
+    private void OnTriggerEnter2D(Collider2D _col)
     {
-        if (_col.collider.CompareTag("Player")) {
-            LoadNextLevel();
+        if (_col.gameObject.CompareTag("Player"))
+        {
+            if (!_SceneManager.GetComponent<Scr_SceneManager>()._isOnSceneTransition)
+            {
+                LoadNextLevel();
+
+                _col.GetComponent<Scr_PlayerStateManager>().pVariables._canWalk = false;
+                _col.GetComponent<Scr_PlayerStateManager>().pVariables._canChangeDirection = false;
+            }
         }
     }
 
@@ -27,6 +34,7 @@ public class Scr_Exit : MonoBehaviour
         _SceneManager.GetComponent<Scr_SceneManager>()._targetRoomNumber = _targetRoomNumber;
         _SceneManager.GetComponent<Scr_SceneManager>()._targetRoomName = _targetRoomName;
 
+        _SceneManager.GetComponent<Scr_SceneManager>()._isOnSceneTransition = true;
         _SceneManager.GetComponent<Scr_SceneManager>().StartCoroutine("LoadLevel");
     }
 }

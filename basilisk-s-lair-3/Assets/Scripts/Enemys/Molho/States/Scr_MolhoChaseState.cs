@@ -6,13 +6,13 @@ public class Scr_MolhoChaseState : Scr_MolhoBaseState
 
     public override void EnterState(Scr_MolhoStateManager molho)
     {
-        
+        molho.chaseArea *= 3;
     }
 
     public override void UpdateState(Scr_MolhoStateManager molho)
     {
-        molho.transform.localScale = new Vector3(Mathf.Sign(-molho.playerPos.x), 1, 1);
-        molho.transform.position = Vector2.MoveTowards(molho.transform.position, molho.playerObject.transform.position, molhoSpd * Time.deltaTime);
+        molho.transform.localScale = new Vector3(Mathf.Sign(-molho._playerPos.x), 1, 1);
+        molho.transform.position = Vector2.MoveTowards(molho.transform.position, molho._playerObject.transform.position, molhoSpd * Time.deltaTime);
 
         if (!molho.isChasing) { molho.SwitchState(molho.IdleState); }
     }

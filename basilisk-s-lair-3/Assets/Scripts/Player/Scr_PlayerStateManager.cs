@@ -9,6 +9,8 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public PlayerVariables pVariables;
     public Scr_PlayerJump _playerJump;
     public Scr_PlayerDash _playerDash;
+    public Scr_PlayerWall _playerWall;
+    public Scr_PlayerMovement _playerMovement;
 
     public static Scr_PlayerStateManager _instance;
 
@@ -21,6 +23,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public Scr_PlayerAttacking AttackingState = new Scr_PlayerAttacking();
     public Scr_PlayerDashState DashState = new Scr_PlayerDashState();
     public Scr_PlayerWallSlideState WallSlideState = new Scr_PlayerWallSlideState();
+    public Scr_PlayerItem ItemState = new Scr_PlayerItem();
 
     public Vector2 _startScenePosition;
 
@@ -34,6 +37,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
     [SerializeField] Transform _wallCheckPos;
     [SerializeField] Transform _lastFootPos;
     [SerializeField] Transform _hitBoxPivot;
+    [SerializeField] public Transform _ItemPos;
 
     #region Move
 
@@ -48,7 +52,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
     #region Wall
 
     public bool IsOnWall;
-    private Vector2 wallCheckDistance = new Vector2(.12f, .2f);
+    [SerializeField] Vector2 wallCheckDistance;
 
     #endregion
 
@@ -68,6 +72,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
     public bool _knockbackTrigger;
     public bool _knockbackStun;
     public Collider2D _enemyHit;
+    private float enemyPos;
 
     [SerializeField] float _knockbackForceX;
     [SerializeField] float _knockbackForceY;
@@ -107,12 +112,14 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         pVariables.gameTime += Time.deltaTime;
 
-        IsOnWall = Physics2D.OverlapBox(_wallCheckPos.position, wallCheckDistance, 0, pVariables.floorLayer)
-        && !IsOnFloor && pVariables.rig.linearVelocity.y <= 0;
+        if (_playerWall.isActiveAndEnabled) {
+            IsOnWall = Physics2D.OverlapBox(_wallCheckPos.position, wallCheckDistance, 0, pVariables.floorLayer)
+            && !IsOnFloor && pVariables.rig.linearVelocity.y <= 0;
+        }
 
         IsOnFloor = Physics2D.OverlapBox(_footPos.position, _playerJump._footArea, 0, pVariables.floorLayer);
 
-        LastFloor();
+        //LastFloor();
 
         if (_knockbackTrigger) { Knockback(); }
 
@@ -123,34 +130,39 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
         Life();
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Time.timeScale = 0.33f;
-        }
-        else if (Input.GetKeyDown(KeyCode.M))
-        {
-            Time.timeScale = 1f;
-        }
+        #region Time Scale
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Application.targetFrameRate = 10;
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            Application.targetFrameRate = 60;
-        }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Time.timeScale = 0.33f;
+            }
+            else if (Input.GetKeyDown(KeyCode.M))
+            {
+                Time.timeScale = 1f;
+            }
+            else if (Input.GetKeyDown(KeyCode.T))
+            {
+                Time.timeScale = 2f;
+            }
 
-        if (!pVariables._afterFirstFrame)
-        {
-            pVariables._afterFirstFrame = true;
-            Debug.Log(pVariables._afterFirstFrame);
-        }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                Application.targetFrameRate = 10;
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+                Application.targetFrameRate = 60;
+            }
+
+        #endregion
     }
 
     public void Knockback()
     {
-        float enemyPos = gameObject.transform.position.x - _enemyHit.transform.position.x;
+        if (_enemyHit != null)
+        {
+            enemyPos = gameObject.transform.position.x - _enemyHit.transform.position.x;
+        }
 
         if (_knockbackTimeCounter > 0)
         {
@@ -192,7 +204,7 @@ public class Scr_PlayerStateManager : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        transform.position = _lastFloorPos;
+        //transform.position = _lastFloorPos;
     }
 
     void LastFloor()
@@ -201,6 +213,13 @@ public class Scr_PlayerStateManager : MonoBehaviour
         {
             _lastFloorPos = this.transform.position;
         }
+    }
+
+    void ResetItemState()
+    {
+        pVariables._canWalk = true;
+        pVariables._canChangeDirection = true;
+        SwitchState(IdleState);
     }
 
     void OnDrawGizmos()

@@ -13,7 +13,7 @@ public class Scr_PlayerJumpState : Scr_PlayerBaseState
 
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) { player.SwitchState(player.DoubleJumpState); }
 
-        if (player.pVariables.rig.linearVelocity.y < 0) { player.SwitchState(player.FallState); }
+        if (player.pVariables.rig.linearVelocityY < 0 && !player.pVariables._isJumping) { player.SwitchState(player.FallState); }
 
         if (player.pVariables._isAttacking) { player.SwitchState(player.AttackingState); }
 

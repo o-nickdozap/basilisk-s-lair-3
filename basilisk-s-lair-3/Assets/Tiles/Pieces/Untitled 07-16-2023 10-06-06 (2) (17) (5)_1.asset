@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Untitled 07-16-2023 10-06-06 (2) (17) (5)_1
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
   m_Sprite: {fileID: -1546537511, guid: e30919b33de3bf548a56c7390508f14e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:

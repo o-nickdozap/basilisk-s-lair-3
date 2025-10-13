@@ -18,14 +18,29 @@ EditorBuildSettings:
     path: Assets/Scenes/Masmorras/Mas_3.unity
     guid: 47be45f38de20f0468ff8fbdfb0c51ad
   - enabled: 1
+    path: Assets/Scenes/Masmorras/PowerUps/Sword.unity
+    guid: f25cd2776b7ceac48b9347a27dd50fff
+  - enabled: 1
     path: Assets/Scenes/Masmorras/Mas_4.unity
     guid: ff731750fb4917d458a71b4cff9baa1a
   - enabled: 1
+    path: Assets/Scenes/Masmorras/Saves/Save_1.unity
+    guid: 158070063677a37468e92fa1875ff5b2
+  - enabled: 1
+    path: Assets/Scenes/Masmorras/Baus/Bau_1.unity
+    guid: 0e2777deb8e283142b4d2ea1afda5144
+  - enabled: 1
     path: Assets/Scenes/Masmorras/Mas_5.unity
-    guid: f25cd2776b7ceac48b9347a27dd50fff
+    guid: 1c4cefee6f9a0bd42861ad5811627ed3
   - enabled: 1
     path: Assets/Scenes/Masmorras/Mas_6.unity
-    guid: 1c4cefee6f9a0bd42861ad5811627ed3
+    guid: 4b4a3f61c00014047a05653adb4dcf04
+  - enabled: 1
+    path: Assets/Scenes/Masmorras/Baus/Bau_2.unity
+    guid: e7a1b3648d2eb27478386506910a5f1c
+  - enabled: 1
+    path: Assets/Scenes/Masmorras/PowerUps/DJump.unity
+    guid: ed3370d639ffc454ea0c5191c85fef14
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c0ca54faab9ce3f479081b3c7790c733, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: a12720d6142fe1349908f34cab6ddade, type: 2}

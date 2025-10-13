@@ -12,10 +12,11 @@ public class Scr_PlayerWallSlideState : Scr_PlayerBaseState
     {
         if (player.IsOnFloor) { player.SwitchState(player.IdleState); }
 
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump")) { player.SwitchState(player.JumpState); }
+
         if (!player.IsOnWall)
         {
-            if (Input.GetKey(KeyCode.Z) || Input.GetButton("Jump")) { player.SwitchState(player.JumpState); }
-            else { player.SwitchState(player.FallState); }
+            player.SwitchState(player.FallState);
         }
     }
 

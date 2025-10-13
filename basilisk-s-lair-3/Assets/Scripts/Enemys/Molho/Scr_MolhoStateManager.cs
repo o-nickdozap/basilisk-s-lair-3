@@ -6,6 +6,8 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
     public EnemyData _molhoData;
 
+    public Scr_TakingDamage _takingDamage;
+
     public Scr_MolhoIdleState IdleState = new Scr_MolhoIdleState();
     public Scr_MolhoChaseState ChaseState = new Scr_MolhoChaseState();
     public Scr_MolhoDamageState DamageState = new Scr_MolhoDamageState();
@@ -16,18 +18,13 @@ public class Scr_MolhoStateManager : MonoBehaviour
     public Vector2 chaseArea;
     public LayerMask playerLayer;
 
-    public GameObject playerObject;
-    public Vector2 playerPos;
-
-    public float molhoLife;
-    [SerializeField] float _knockForceX, _knockForceY;
-
     public bool isChasing;
+
+    public GameObject _playerObject;
+    public Vector2 _playerPos;
 
     void Start()
     {
-        playerObject = GameObject.Find("Player");
-
         currentState = IdleState;
 
         currentState.EnterState(this);
@@ -35,34 +32,18 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
     void Update()
     {
-        playerPos = gameObject.transform.position - playerObject.transform.position;
-
         isChasing = Physics2D.OverlapBox(gameObject.transform.position, chaseArea, 0, playerLayer);
 
         currentState.UpdateState(this);
 
-        if (molhoLife <= 0) { Die(); }
-    }
-
-    public void Damage(float Damage)
-    {
-        molhoLife -= Damage;
-        KnockBack();
-    }
-
-    public void KnockBack()
-    {
-        rig.linearVelocity = new Vector2(Mathf.Sign(playerPos.x) * _knockForceX, Mathf.Sign(playerPos.y) * _knockForceY);
-    }
-
-    void Die()
-    {
-        anim.Play("Anim_molho_death");
-    }
-
-    void Bye()
-    {
-        Destroy(this.gameObject);
+        if (_playerObject != null)
+        {
+            _playerPos = this.transform.position - _playerObject.transform.position;
+        }
+        else
+        {
+            _playerObject = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     public void SwitchState(Scr_MolhoBaseState state)
@@ -75,8 +56,6 @@ public class Scr_MolhoStateManager : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player")) {
             Scr_PlayerStateManager _player = col.gameObject.GetComponent<Scr_PlayerStateManager>();
-
-            KnockBack();
 
             _player._playerLife--;
             _player._enemyHit = GetComponent<Collider2D>();
@@ -93,10 +72,8 @@ public class Scr_MolhoStateManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-
         Gizmos.color = Color.green;
 
         Gizmos.DrawWireCube(gameObject.transform.position, chaseArea);
-
     }
 }

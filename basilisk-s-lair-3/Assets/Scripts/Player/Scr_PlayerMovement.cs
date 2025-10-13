@@ -9,14 +9,11 @@ public class Scr_PlayerMovement : MonoBehaviour
     private void Start()
     {
         pVariables._playerDirection = 1;
-        pVariables._canWalk = true;
     }
 
     void MoveInput()
     {
         pVariables._move = Input.GetAxisRaw("Horizontal");
-
-        //Debug.Log("Right:" + Input.GetKey(KeyCode.RightArrow) + " " + "Left:" + Input.GetKey(KeyCode.LeftArrow));
     }
 
     void Movement()
@@ -35,13 +32,17 @@ public class Scr_PlayerMovement : MonoBehaviour
     {
         if (pVariables._canWalk)
         {
-            if (pVariables._afterFirstFrame) { MoveInput(); }
-            PlayerDirection();
+            MoveInput();
         }
         else
         {
             pVariables._move = 0;
         }
+
+        if (pVariables._canChangeDirection)
+        {
+            PlayerDirection();
+        }  
     }
 
     private void FixedUpdate()

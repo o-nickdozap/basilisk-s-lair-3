@@ -1,9 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scr_PlayerIdleState : Scr_PlayerBaseState
 {
-    float _secondIdleTimer = 3f;
+    float _secondIdleTimer = 3.5f;
     float _secondIdleTimerCounter;
 
     public override void EnterState(Scr_PlayerStateManager player)
@@ -26,7 +25,14 @@ public class Scr_PlayerIdleState : Scr_PlayerBaseState
 
         if (_secondIdleTimerCounter <= 0)
         {
-            player.SwitchState(player.Idle2State);
+            int _ribbitChance;
+
+            _ribbitChance = Random.Range(0, 100);
+
+            if (_ribbitChance >= 50)
+            {
+                player.SwitchState(player.Idle2State);
+            }
 
             _secondIdleTimerCounter = _secondIdleTimer;
         }

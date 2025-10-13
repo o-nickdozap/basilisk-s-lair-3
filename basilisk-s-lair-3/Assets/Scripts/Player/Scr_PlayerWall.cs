@@ -35,11 +35,11 @@ public class Scr_PlayerWall : MonoBehaviour
     {
         if (pVariables.Manager.IsOnWall)
         {
+            pVariables.Manager._playerJump._jumpCounter = pVariables.jumpCounterMax;
+            pVariables.Manager._playerDash._dashCounter = pVariables._dashCounterMax;
+
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("Jump"))
             {
-                pVariables.Manager._playerJump._jumpCounter = pVariables.jumpCounterMax;
-                pVariables.Manager._playerDash._dashCounter = pVariables._dashCounterMax;
-
                 pVariables.rig.AddForce(new Vector2(-pVariables._playerDirection * walljumpForceX, walljumpForceY), ForceMode2D.Force);
                 pVariables._playerDirection = -pVariables._playerDirection;
             }
