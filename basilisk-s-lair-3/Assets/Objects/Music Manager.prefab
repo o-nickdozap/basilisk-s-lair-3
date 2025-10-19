@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicLibrary
   _tracks:
-  - _trackName: Area 1
+  - _trackName: Tutorial
     clip: {fileID: 8300000, guid: 68c6bdd2ea3d9084ca3c1dc07c257423, type: 3}
   - _trackName: Item
     clip: {fileID: 8300000, guid: dc7ad7607187b574e90f6f061fa920f2, type: 3}

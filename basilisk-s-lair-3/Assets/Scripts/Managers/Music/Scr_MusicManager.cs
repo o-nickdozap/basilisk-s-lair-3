@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scr_MusicManager : MonoBehaviour
 {
@@ -21,9 +22,22 @@ public class Scr_MusicManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     public void PlayMusic(string trackName, float fadeDuration = .5f)
     {
         StartCoroutine(AnimateMusicCrossfade(_library.GetClipFromName(trackName), fadeDuration));
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (_library.GetClipFromName(Scr_SceneManager._instance.CurrentArea()) != _musicSource.clip)
+        {
+            PlayMusic(Scr_SceneManager._instance.CurrentArea(), Scr_SceneManager._instance._currentAreaFadeDuration);
+        }
     }
 
     IEnumerator AnimateMusicCrossfade(AudioClip nextTrack, float fadeDuration = .5f)

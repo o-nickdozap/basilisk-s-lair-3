@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7739569176478996657}
   - component: {fileID: 4418185955609606584}
+  - component: {fileID: 6575990881737369588}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: SceneManager
@@ -51,3 +52,27 @@ MonoBehaviour:
   _transitionAnim: {fileID: 0}
   _transitionTime: 1
   _cameraRatio: {fileID: 0}
+  _currentScene: 
+--- !u!114 &6575990881737369588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988776042798968531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b675e64528f73414cb0b283431e3f684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaSongList
+  _tutorialRooms:
+  - Mas_1
+  - Mas_2
+  - Mas_3
+  - Mas_4
+  - Mas_5
+  - Mas_6
+  - Bau_1
+  - Bau_2
+  _saveRooms:
+  - Save_1

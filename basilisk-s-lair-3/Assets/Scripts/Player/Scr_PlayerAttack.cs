@@ -11,6 +11,7 @@ public class Scr_PlayerAttack : MonoBehaviour
     [SerializeField] float _swordAttack1Radius;
     //[SerializeField] Vector2 walkAttackArea = new Vector2(.35f, .45f);
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] LayerMask interactableLayer;
 
     [SerializeField] Transform _attackPos;
 
@@ -37,6 +38,7 @@ public class Scr_PlayerAttack : MonoBehaviour
         if (_isDamaging)
         {
             AttackDamage();
+            AttackInteract();
         }
     }
 
@@ -92,10 +94,29 @@ public class Scr_PlayerAttack : MonoBehaviour
     void AttackDamage()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPos.position, _attackRadius, enemyLayer);
-        
+
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Scr_TakingDamage>().Damage(_swordDamage);
+
+            _isDamaging = false;
+        }
+    }
+
+    void AttackInteract()
+    {
+        Collider2D[] hitInteractable = Physics2D.OverlapCircleAll(_attackPos.position, _attackRadius, interactableLayer);
+
+        foreach (Collider2D interactable in hitInteractable)
+        {
+            if (interactable.CompareTag("Chest"))
+            {
+                interactable.GetComponent<Scr_Chest>().WasHit();
+            }
+            if (interactable.CompareTag("Candlestick"))
+            {
+                Destroy(interactable.gameObject);
+            }
 
             _isDamaging = false;
         }

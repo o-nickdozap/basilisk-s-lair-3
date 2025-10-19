@@ -1,8 +1,9 @@
 using AutoLetterbox;
 using System.Collections;
+using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Diagnostics;
 
 public class Scr_SceneManager : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class Scr_SceneManager : MonoBehaviour
 
     [SerializeField] GameObject _cameraRatio;
 
-    private string _currentScene;
+    public string _currentScene;
+    string _currentArea;
+    public float _currentAreaFadeDuration;
 
     void Awake()
     {
@@ -99,18 +102,26 @@ public class Scr_SceneManager : MonoBehaviour
             }
         }
 
-        if (_currentScene == "Sword")
+        UnityEngine.Debug.Log(CurrentArea() + " " + _currentAreaFadeDuration);
+    }
+
+    public string CurrentArea()
+    {
+        if (AreaSongList._instance._tutorialRooms.Contains(_currentScene))
         {
-            Scr_MusicManager._instance._musicSource.clip = null;
+            _currentArea = "Tutorial";
+            _currentAreaFadeDuration = 0.5f;
+            return _currentArea;
         }
-        else
+
+        else if (AreaSongList._instance._saveRooms.Contains(_currentScene))
         {
-            if (Scr_MusicManager._instance._musicSource.clip != Scr_MusicManager._instance._library.GetClipFromName("Area 1"))
-            {
-                Scr_MusicManager._instance.PlayMusic("Area 1");
-                Scr_MusicManager._instance._musicSource.loop = true;
-            }
+            _currentArea = "Save";
+            _currentAreaFadeDuration = 1.2f;
+            return _currentArea;
         }
+
+        return _currentArea;
     }
 
     void RestartGameBuild()

@@ -740,6 +740,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 512
   _attackPos: {fileID: 7887816231479309706}
   _swordHitSound: {fileID: 5975495169733305540}
 --- !u!114 &3337527692466879596
